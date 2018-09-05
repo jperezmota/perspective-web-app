@@ -1,6 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { AuthNoticeService } from '../../../../core/auth/auth-notice.service';
-import { AuthNotice } from '../../../../core/auth/auth-notice.interface';
+import { AuthNoticeService } from '../../../core/auth/auth-notice.service';
+import { AuthNotice } from '../../../core/auth/auth-notice.interface';
 
 @Component({
 	selector: 'm-auth-notice',

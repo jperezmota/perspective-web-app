@@ -46,7 +46,7 @@ const routes: Routes = [
 	{
 		path: 'login',
 		// canActivate: [NgxPermissionsGuard],
-		loadChildren: './auth/auth.module#AuthModule',
+		loadChildren: './../auth/auth.module#AuthModule',
 		data: {
 			permissions: {
 				except: 'ADMIN'
