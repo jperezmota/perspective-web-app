@@ -8,14 +8,14 @@ import {
 	ChangeDetectionStrategy,
 	ChangeDetectorRef
 } from '@angular/core';
-import { AuthenticationService } from '../../../../core/auth/authentication.service';
+import { AuthenticationService } from '../../../core/auth/authentication.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { AuthNoticeService } from '../../../../core/auth/auth-notice.service';
+import { AuthNoticeService } from '../../../core/auth/auth-notice.service';
 import { NgForm } from '@angular/forms';
 import * as objectPath from 'object-path';
 import { TranslateService } from '@ngx-translate/core';
-import { SpinnerButtonOptions } from '../../../partials/content/general/spinner-button/button-options.interface';
+import { SpinnerButtonOptions } from '../../partials/content/general/spinner-button/button-options.interface';
 
 @Component({
 	selector: 'm-login',
