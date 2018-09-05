@@ -9,8 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthenticationModule } from './core/auth/authentication.module';
 import { NgxPermissionsModule } from 'ngx-permissions';
 
-import { LayoutModule } from './content/layout/layout.module';
-import { PartialsModule } from './content/partials/partials.module';
+import { LayoutModule } from './modules/layout/layout.module';
+import { PartialsModule } from './modules/partials/partials.module';
 import { CoreModule } from './core/core.module';
 import { AclService } from './core/services/acl.service';
 import { LayoutConfigService } from './core/services/layout-config.service';
