@@ -6,17 +6,17 @@ import {
 	OnDestroy,
 	Output
 } from '@angular/core';
-import { LayoutConfigService } from '../../core/services/layout-config.service';
+import { LayoutConfigService } from '../../../../core/services/layout-config.service';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { LayoutConfig } from '../../config/layout';
+import { LayoutConfig } from '../../../../config/layout';
 import { Subject } from 'rxjs';
-import { AuthNoticeService } from '../../core/auth/auth-notice.service';
-import { TranslationService } from '../../core/services/translation.service';
+import { AuthNoticeService } from '../../../../core/auth/auth-notice.service';
+import { TranslationService } from '../../../../core/services/translation.service';
 
 @Component({
 	selector: 'm-auth',
-	templateUrl: './auth.component.html',
-	styleUrls: ['./auth.component.scss']
+	templateUrl: './auth.page.html',
+	styleUrls: ['./auth.page.scss']
 })
 export class AuthComponent implements OnInit, OnDestroy {
 	@HostBinding('id') id = 'm_login';

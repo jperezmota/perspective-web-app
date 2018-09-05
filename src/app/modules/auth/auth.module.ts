@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthComponent } from './auth.component';
-import { LoginComponent } from './login/login.component';
+import { AuthComponent } from './pages/auth/auth.page';
+import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { RegisterComponent } from './register/register.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import {
 	MatButtonModule,
 	MatFormFieldModule,
@@ -14,7 +14,7 @@ import {
 } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { SpinnerButtonModule } from '../partials/content/general/spinner-button/spinner-button.module';
-import { AuthNoticeComponent } from './auth-notice/auth-notice.component';
+import { AuthNoticeComponent } from './components/auth-notice/auth-notice.component';
 
 @NgModule({
 	imports: [
