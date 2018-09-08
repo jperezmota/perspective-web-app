@@ -8,7 +8,7 @@ import {
 	ChangeDetectionStrategy,
 	ChangeDetectorRef
 } from '@angular/core';
-import { AuthenticationService } from '../../../../core/auth/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AuthNoticeService } from '../../../../core/auth/auth-notice.service';
@@ -16,31 +16,23 @@ import { NgForm } from '@angular/forms';
 import * as objectPath from 'object-path';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerButtonOptions } from '../../../partials/content/general/spinner-button/button-options.interface';
+import { CredentialModel } from '../../models/credential.model';
+import { UserAuthenticationModel } from '../../models/user-authentication.model';
+import { HttpResponse } from '../../../../../../node_modules/@angular/common/http';
 
 @Component({
 	selector: 'm-login',
 	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-	public model: any = { email: 'admin@demo.com', password: 'demo' };
-	@Output() actionChange = new Subject<string>();
-	public loading = false;
 
 	@Input() action: string;
+	@Output() actionChange = new Subject<string>();
+	public model: CredentialModel = { username: 'admin', password: 'admin' };
 
-	@ViewChild('f') f: NgForm;
+	@ViewChild('f') form: NgForm;
 	errors: any = [];
-
-	spinner: SpinnerButtonOptions = {
-		active: false,
-		spinnerSize: 18,
-		raised: true,
-		buttonColor: 'primary',
-		spinnerColor: 'accent',
-		fullWidth: false
-	};
 
 	constructor(
 		private authService: AuthenticationService,
@@ -50,61 +42,26 @@ export class LoginComponent implements OnInit, OnDestroy {
 		private cdr: ChangeDetectorRef
 	) {}
 
-	submit() {
-		this.spinner.active = true;
-		if (this.validate(this.f)) {
-			this.authService.login(this.model).subscribe(response => {
-				if (typeof response !== 'undefined') {
-					this.router.navigate(['/']);
-				} else {
-					this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'error');
-				}
-				this.spinner.active = false;
-				this.cdr.detectChanges();
-			});
-		}
+	ngOnInit(): void {
+		this.showDemoMessage();
 	}
 
-	ngOnInit(): void {
-		// demo message to show
+	showDemoMessage(): void {
 		if (!this.authNoticeService.onNoticeChanged$.getValue()) {
 			const initialNotice = `Use account
-			<strong>admin@demo.com</strong> and password
-			<strong>demo</strong> to continue.`;
+			<strong>admin</strong> and password
+			<strong>admin</strong> to continue.`;
 			this.authNoticeService.setNotice(initialNotice, 'success');
 		}
 	}
 
-	ngOnDestroy(): void {
-		this.authNoticeService.setNotice(null);
-	}
-
-	validate(f: NgForm) {
-		if (f.form.status === 'VALID') {
-			return true;
-		}
-
-		this.errors = [];
-		if (objectPath.get(f, 'form.controls.email.errors.email')) {
-			this.errors.push(this.translate.instant('AUTH.VALIDATION.INVALID', {name: this.translate.instant('AUTH.INPUT.EMAIL')}));
-		}
-		if (objectPath.get(f, 'form.controls.email.errors.required')) {
-			this.errors.push(this.translate.instant('AUTH.VALIDATION.REQUIRED', {name: this.translate.instant('AUTH.INPUT.EMAIL')}));
-		}
-
-		if (objectPath.get(f, 'form.controls.password.errors.required')) {
-			this.errors.push(this.translate.instant('AUTH.VALIDATION.INVALID', {name: this.translate.instant('AUTH.INPUT.PASSWORD')}));
-		}
-		if (objectPath.get(f, 'form.controls.password.errors.minlength')) {
-			this.errors.push(this.translate.instant('AUTH.VALIDATION.MIN_LENGTH', {name: this.translate.instant('AUTH.INPUT.PASSWORD')}));
-		}
-
-		if (this.errors.length > 0) {
-			this.authNoticeService.setNotice(this.errors.join('<br/>'), 'error');
-			this.spinner.active = false;
-		}
-
-		return false;
+	submit() {
+		this.authService.login(this.model).subscribe(
+			(resp: HttpResponse<UserAuthenticationModel>) => {
+				this.router.navigate(['/']);
+			},
+			error => this.authNoticeService.setNotice(error, 'error')
+		);
 	}
 
 	forgotPasswordPage(event: Event) {
@@ -116,4 +73,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 		this.action = 'register';
 		this.actionChange.next(this.action);
 	}
+
+	ngOnDestroy(): void {
+		this.authNoticeService.setNotice(null);
+	}
+
 }

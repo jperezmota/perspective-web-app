@@ -1,4 +1,4 @@
-import { AuthenticationService } from '../../../../../core/auth/authentication.service';
+import { AuthenticationService } from '../../../../auth/services/authentication.service';
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';

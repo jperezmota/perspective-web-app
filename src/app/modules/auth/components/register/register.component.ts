@@ -7,7 +7,7 @@ import {
 	ElementRef
 } from '@angular/core';
 import { Subject } from 'rxjs';
-import { AuthenticationService } from '../../../../core/auth/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import { NgForm } from '@angular/forms';
 import * as objectPath from 'object-path';
 import { AuthNoticeService } from '../../../../core/auth/auth-notice.service';

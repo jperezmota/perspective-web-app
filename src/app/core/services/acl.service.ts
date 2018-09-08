@@ -4,7 +4,7 @@ import { ConfigData } from '../interfaces/config-data';
 import { NgxRolesService, NgxPermissionsService } from 'ngx-permissions';
 import { from, BehaviorSubject, Subject } from 'rxjs';
 import { mergeMap, filter } from 'rxjs/operators';
-import { AuthenticationService } from '../auth/authentication.service';
+import { AuthenticationService } from '../../modules/auth/services/authentication.service';
 
 @Injectable()
 export class AclService implements ConfigData {

@@ -7,7 +7,7 @@ import {
 } from 'ngx-auth';
 
 import { TokenStorage } from './token-storage.service';
-import { AuthenticationService } from './authentication.service';
+import { AuthenticationService } from '../../modules/auth/services/authentication.service';
 
 export function factory(authenticationService: AuthenticationService) {
 	return authenticationService;

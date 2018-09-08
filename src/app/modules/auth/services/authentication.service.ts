@@ -2,22 +2,28 @@ import { BehaviorSubject, Observable, Subject, from, throwError } from 'rxjs';
 import { map, catchError, tap, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { AuthService } from 'ngx-auth';
 
-import { TokenStorage } from './token-storage.service';
-import { UtilsService } from '../services/utils.service';
-import { AccessData } from './access-data';
-import { Credential } from './credential';
+import { TokenStorage } from '../../../core/auth/token-storage.service';
+import { UtilsService } from '../../../core/services/utils.service';
+import { AccessData } from '../../../core/auth/access-data';
+import { CredentialModel } from '../models/credential.model';
+import { UserAuthenticationModel } from '../models/user-authentication.model';
+
+import { ApiInfo } from '../../../shared/api-info';
 
 @Injectable()
 export class AuthenticationService implements AuthService {
-	API_URL = 'api';
-	API_ENDPOINT_LOGIN = '/login';
-	API_ENDPOINT_REFRESH = '/refresh';
-	API_ENDPOINT_REGISTER = '/register';
 
 	public onCredentialUpdated$: Subject<AccessData>;
+
+	API_ENDPOINT_REFRESH: string = ';';
+	API_URL: string = ';';
+	API_ENDPOINT_LOGIN: string = ';';
+	API_ENDPOINT_REGISTER: string = 'ada';
+
+	private authenticatedUser: UserAuthenticationModel;
 
 	constructor(
 		private http: HttpClient,
@@ -26,6 +32,39 @@ export class AuthenticationService implements AuthService {
 	) {
 		this.onCredentialUpdated$ = new Subject();
 	}
+
+	public login(credential: CredentialModel): Observable<any> {
+		const loginApiUrl: string = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_LOGIN;
+		return this.http.post<UserAuthenticationModel>(loginApiUrl, credential, {observe: 'response'})
+						.pipe(map(
+							      (resp: HttpResponse<UserAuthenticationModel>) => {
+									  this.authenticatedUser = resp.body;
+									  return resp;
+							      }
+							 ),
+							 catchError(this.handleErrorr)
+						);
+	}
+
+	public userAuthenticated(): boolean {
+		return this.userAuthenticated == null ? false : true;
+	}
+
+	private handleErrorr(errorResponse: HttpErrorResponse) {
+
+		const clientSideOrNetworkError = errorResponse.error instanceof ErrorEvent;
+		if (clientSideOrNetworkError) {
+		  console.error('An error occurred:', errorResponse.error.message);
+		} else {
+			if (errorResponse.status === 404) {
+				return throwError(errorResponse.error.message);
+			} else {
+				console.error( `Backend returned code ${errorResponse.status}, ` + `body was: ${errorResponse.error}`);
+			}
+		}
+
+		return throwError('Something bad happened; please try again later.');
+	  }
 
 	/**
 	 * Check, if user already authorized.
@@ -95,26 +134,6 @@ export class AuthenticationService implements AuthService {
 	}
 
 	/**
-	 * Submit login request
-	 * @param {Credential} credential
-	 * @returns {Observable<any>}
-	 */
-	public login(credential: Credential): Observable<any> {
-		// Expecting response from API
-		// {"id":1,"username":"admin","password":"demo","email":"admin@demo.com","accessToken":"access-token-0.022563452858263444","refreshToken":"access-token-0.9348573301432961","roles":["ADMIN"],"pic":"./assets/app/media/img/users/user4.jpg","fullname":"Mark Andre"}
-		return this.http.get<AccessData>(this.API_URL + this.API_ENDPOINT_LOGIN + '?' + this.util.urlParam(credential)).pipe(
-			map((result: any) => {
-				if (result instanceof Array) {
-					return result.pop();
-				}
-				return result;
-			}),
-			tap(this.saveAccessData.bind(this)),
-			catchError(this.handleError('login', []))
-		);
-	}
-
-	/**
 	 * Handle Http operation that failed.
 	 * Let the app continue.
 	 * @param operation - name of the operation that failed
@@ -160,7 +179,7 @@ export class AuthenticationService implements AuthService {
 	 * @param {Credential} credential
 	 * @returns {Observable<any>}
 	 */
-	public register(credential: Credential): Observable<any> {
+	public register(credential: CredentialModel): Observable<any> {
 		// dummy token creation
 		credential = Object.assign({}, credential, {
 			accessToken: 'access-token-' + Math.random(),
@@ -177,7 +196,7 @@ export class AuthenticationService implements AuthService {
 	 * @param {Credential} credential
 	 * @returns {Observable<any>}
 	 */
-	public requestPassword(credential: Credential): Observable<any> {
+	public requestPassword(credential: CredentialModel): Observable<any> {
 		return this.http.get(this.API_URL + this.API_ENDPOINT_LOGIN + '?' + this.util.urlParam(credential))
 			.pipe(catchError(this.handleError('forgot-password', []))
 		);
