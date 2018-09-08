@@ -38,6 +38,7 @@ import { MenuAsideService } from './core/services/layout/menu-aside.service';
 import { LayoutRefService } from './core/services/layout/layout-ref.service';
 import { SplashScreenService } from './core/services/splash-screen.service';
 import { DataTableService } from './core/services/datatable.service';
+import { ErrorPageComponent } from './modules/pages/snippets/error-page/error-page.component';
 
 import 'hammerjs';
 
@@ -46,7 +47,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 };
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, ErrorPageComponent],
 	imports: [
 		BrowserAnimationsModule,
 		BrowserModule,
