@@ -5,6 +5,7 @@ import { ActionComponent } from './header/action/action.component';
 import { NgxPermissionsGuard } from 'ngx-permissions';
 import { ProfileComponent } from './header/profile/profile.component';
 import { InnerComponent } from './components/inner/inner.component';
+import { AuthGuardService } from '../auth/guards/AuthGuardService';
 
 const routes: Routes = [
 	{
@@ -12,12 +13,13 @@ const routes: Routes = [
 		component: PagesComponent,
 		// Remove comment to enable login
 		// canActivate: [NgxPermissionsGuard],
+		canActivate: [AuthGuardService],
 		data: {
 			permissions: {
 				only: ['ADMIN', 'USER'],
 				except: ['GUEST'],
 				redirectTo: '/login'
-			}
+			},
 		},
 		children: [
 			{

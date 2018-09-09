@@ -41,6 +41,7 @@ import { DataTableService } from './core/services/datatable.service';
 import { ErrorPageComponent } from './modules/pages/snippets/error-page/error-page.component';
 
 import 'hammerjs';
+import { AuthGuardService } from './modules/auth/guards/AuthGuardService';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 	// suppressScrollX: true
@@ -64,6 +65,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 		MatProgressSpinnerModule,
 	],
 	providers: [
+		AuthGuardService,
 		AclService,
 		LayoutConfigService,
 		LayoutConfigStorageService,

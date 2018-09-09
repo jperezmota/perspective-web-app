@@ -17,6 +17,7 @@ import { GetObjectPipe } from './pipes/get-object.pipe';
 import { ConsoleLogPipe } from './pipes/console-log.pipe';
 import { SafePipe } from './pipes/safe.pipe';
 import { PortletDirective } from './directives/portlet.directive';
+import { AuthGuardService } from '../modules/auth/guards/AuthGuardService';
 
 @NgModule({
 	imports: [CommonModule],

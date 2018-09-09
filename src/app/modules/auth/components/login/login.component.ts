@@ -18,7 +18,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { SpinnerButtonOptions } from '../../../partials/content/general/spinner-button/button-options.interface';
 import { CredentialModel } from '../../models/credential.model';
 import { UserAuthenticationModel } from '../../models/user-authentication.model';
-import { HttpResponse } from '../../../../../../node_modules/@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
 	selector: 'm-login',

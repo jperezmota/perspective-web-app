@@ -47,7 +47,7 @@ export class AuthenticationService implements AuthService {
 	}
 
 	public userAuthenticated(): boolean {
-		return this.userAuthenticated == null ? false : true;
+		return this.authenticatedUser ? true : false;
 	}
 
 	private handleErrorr(errorResponse: HttpErrorResponse) {
