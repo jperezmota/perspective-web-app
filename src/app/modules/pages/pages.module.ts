@@ -10,7 +10,6 @@ import { CoreModule } from '../../core/core.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ErrorPageComponent } from './snippets/error-page/error-page.component';
 import { InnerComponent } from './components/inner/inner.component';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { InnerComponent } from './components/inner/inner.component';
 		PagesComponent,
 		ActionComponent,
 		ProfileComponent,
-		ErrorPageComponent,
 		InnerComponent,
 	],
 	imports: [

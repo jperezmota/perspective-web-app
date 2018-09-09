@@ -1,7 +1,8 @@
-import { AuthenticationService } from '../../../../../core/auth/authentication.service';
+import { AuthenticationService } from '../../../../auth/services/authentication.service';
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import { UserAuthenticationModel } from '../../../../auth/models/user-authentication.model';
 
 @Component({
 	selector: 'm-user-profile',
@@ -20,18 +21,21 @@ export class UserProfileComponent implements OnInit {
 
 	@ViewChild('mProfileDropdown') mProfileDropdown: ElementRef;
 
+	username: string;
+
 	constructor (
 		private router: Router,
-		private authService: AuthenticationService,
-		private sanitizer: DomSanitizer
+		private sanitizer: DomSanitizer,
+		private authenticationService: AuthenticationService
 	) {}
 
 	ngOnInit (): void {
+		this.username = this.authenticationService.getUsername();
 		if (!this.avatarBg)
 			this.avatarBg = this.sanitizer.bypassSecurityTrustStyle('url(./assets/app/media/img/misc/user_profile_bg.jpg)');
 	}
 
 	public logout () {
-		this.authService.logout(true);
+		this.authenticationService.logout();
 	}
 }

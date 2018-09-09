@@ -6,12 +6,13 @@ import {
 	OnDestroy,
 	Output
 } from '@angular/core';
-import { LayoutConfigService } from '../../core/services/layout-config.service';
+import { LayoutConfigService } from '../../../core/services/layout-config.service';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { LayoutConfig } from '../../config/layout';
+import { LayoutConfig } from '../../../config/layout';
 import { Subject } from 'rxjs';
-import { AuthNoticeService } from '../../core/auth/auth-notice.service';
-import { TranslationService } from '../../core/services/translation.service';
+import { AuthNoticeService } from '../../../core/auth/auth-notice.service';
+import { TranslationService } from '../../../core/services/translation.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
 	selector: 'm-auth',
@@ -31,6 +32,9 @@ export class AuthComponent implements OnInit, OnDestroy {
 		private layoutConfigService: LayoutConfigService,
 		public authNoticeService: AuthNoticeService,
 		private translationService: TranslationService,
+
+		private authenticationService: AuthenticationService,
+		private router: Router
 	) {}
 
 	ngOnInit(): void {

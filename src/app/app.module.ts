@@ -38,15 +38,17 @@ import { MenuAsideService } from './core/services/layout/menu-aside.service';
 import { LayoutRefService } from './core/services/layout/layout-ref.service';
 import { SplashScreenService } from './core/services/splash-screen.service';
 import { DataTableService } from './core/services/datatable.service';
+import { ErrorPageComponent } from './modules/pages/snippets/error-page/error-page.component';
 
 import 'hammerjs';
+import { AuthGuardService } from './modules/auth/guards/auth-guard.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 	// suppressScrollX: true
 };
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, ErrorPageComponent],
 	imports: [
 		BrowserAnimationsModule,
 		BrowserModule,
@@ -63,6 +65,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 		MatProgressSpinnerModule,
 	],
 	providers: [
+		AuthGuardService,
 		AclService,
 		LayoutConfigService,
 		LayoutConfigStorageService,
