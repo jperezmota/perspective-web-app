@@ -41,7 +41,7 @@ import { DataTableService } from './core/services/datatable.service';
 import { ErrorPageComponent } from './modules/pages/snippets/error-page/error-page.component';
 
 import 'hammerjs';
-import { AuthGuardService } from './modules/auth/guards/AuthGuardService';
+import { AuthGuardService } from './modules/auth/guards/auth-guard.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 	// suppressScrollX: true

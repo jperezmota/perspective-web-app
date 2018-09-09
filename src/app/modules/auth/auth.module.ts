@@ -15,7 +15,7 @@ import {
 import { TranslateModule } from '@ngx-translate/core';
 import { SpinnerButtonModule } from '../partials/content/general/spinner-button/spinner-button.module';
 import { AuthNoticeComponent } from './components/auth-notice/auth-notice.component';
-import { AuthGuardService } from './guards/AuthGuardService';
+import { AuthGuardService } from './guards/auth-guard.service';
 
 @NgModule({
 	imports: [

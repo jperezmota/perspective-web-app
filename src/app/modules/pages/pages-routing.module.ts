@@ -5,7 +5,7 @@ import { ActionComponent } from './header/action/action.component';
 import { NgxPermissionsGuard } from 'ngx-permissions';
 import { ProfileComponent } from './header/profile/profile.component';
 import { InnerComponent } from './components/inner/inner.component';
-import { AuthGuardService } from '../auth/guards/AuthGuardService';
+import { AuthGuardService } from '../auth/guards/auth-guard.service';
 
 const routes: Routes = [
 	{
