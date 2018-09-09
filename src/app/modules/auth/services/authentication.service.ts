@@ -50,6 +50,15 @@ export class AuthenticationService implements AuthService {
 		return this.authenticatedUser ? true : false;
 	}
 
+	public logout(refresh?: boolean): void {
+		this.authenticatedUser = null;
+		location.reload(true);
+	}
+
+	public getUsername(): string {
+		return this.authenticatedUser.username;
+	}
+
 	private handleErrorr(errorResponse: HttpErrorResponse) {
 
 		const clientSideOrNetworkError = errorResponse.error instanceof ErrorEvent;
@@ -147,16 +156,6 @@ export class AuthenticationService implements AuthService {
 			// Let the app keep running by returning an empty result.
 			return from(result);
 		};
-	}
-
-	/**
-	 * Logout
-	 */
-	public logout(refresh?: boolean): void {
-		this.tokenStorage.clear();
-		if (refresh) {
-			location.reload(true);
-		}
 	}
 
 	/**
