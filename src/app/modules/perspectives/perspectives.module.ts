@@ -4,6 +4,7 @@ import { CommonModule } from '../../../../node_modules/@angular/common';
 import { PerspectivesRoutingModule } from './perspectives-routing.module';
 import { PartialsModule } from '../partials/partials.module';
 import { PerspectiveService } from './services/perspectives.service';
+import { PerspectiveComponent } from './pages/perspective/perspective.component';
 
 @NgModule({
     imports: [
@@ -12,7 +13,8 @@ import { PerspectiveService } from './services/perspectives.service';
         PartialsModule
     ],
     declarations: [
-        PerspectivesListComponent
+        PerspectivesListComponent,
+        PerspectiveComponent
     ],
     providers: [
         PerspectiveService

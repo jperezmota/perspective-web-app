@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PerspectiveService } from '../../services/perspectives.service';
 import { HttpResponse } from '../../../../../../node_modules/@angular/common/http';
 import { PerspectiveModel } from '../../models/perspective.model';
+import { Router } from '../../../../../../node_modules/@angular/router';
 
 @Component({
     selector: 'm-pers-list',
@@ -12,7 +13,7 @@ export class PerspectivesListComponent implements OnInit {
 
     perspectives: PerspectiveModel[] = [];
 
-    constructor(private perspectiveService: PerspectiveService) {}
+    constructor(private perspectiveService: PerspectiveService, private router: Router) {}
 
     ngOnInit(): void {
         this.perspectiveService.getPerspectives().subscribe(
@@ -21,5 +22,9 @@ export class PerspectivesListComponent implements OnInit {
                 console.log(this.perspectives);
             }
         );
+    }
+
+    navigateToPerspectiveView(id: number): void {
+        this.router.navigate(['perspectives', id]);
     }
 }

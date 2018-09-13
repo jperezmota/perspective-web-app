@@ -9,11 +9,11 @@
             </h3>
         </div>
     </ng-container>
-    
+
     <!-- use ng-container[mPortletBody] for the body content -->
     <ng-container mPortletBody *ngFor="let perspective of perspectives">
         <!--begin::m-widget5-->
-        <div class="m-widget5">
+        <div class="m-widget5" (click)="navigateToPerspectiveView(perspective.id)">
             <div class="m-widget5__item">
                 <div class="m-widget5__content">
                     <div class="m-widget5__section">
