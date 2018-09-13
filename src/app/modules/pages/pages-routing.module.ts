@@ -27,6 +27,10 @@ const routes: Routes = [
 				loadChildren: './components/dashboard/dashboard.module#DashboardModule'
 			},
 			{
+				path: 'perspectives',
+				loadChildren: './../perspectives/perspectives.module#PerspectivesModule'
+			},
+			{
 				path: 'builder',
 				loadChildren: './builder/builder.module#BuilderModule'
 			},
