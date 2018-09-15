@@ -12,6 +12,23 @@ export class PerspectiveService {
 
     constructor (private http: HttpClient, private authenticationService: AuthenticationService) {}
 
+
+	public getPerspective(perspectiveId: number): Observable< HttpResponse<PerspectiveModel> > {
+		const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_PERSPECTIVE + '/' + perspectiveId;
+		const userToken = this.authenticationService.getUserToken();
+        return this.http.get<PerspectiveModel>(perspectiveApiUrl, {observe: 'response', headers: new HttpHeaders().set('Authorization', userToken )})
+                        .pipe(
+                            catchError(this.handleError)
+                        );
+	}
+
+	public modifyPerspective(perspective: any): Observable< HttpResponse<PerspectiveModel> > {
+		const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_PERSPECTIVE + '/' + perspective.id;
+		const userToken = this.authenticationService.getUserToken();
+		return this.http.patch<PerspectiveModel>(perspectiveApiUrl, perspective, {observe: 'response', headers: new HttpHeaders().set('Authorization', userToken )})
+					    .pipe(catchError(this.handleError));
+	}
+
 	public createPerspective(perspective: any): Observable< HttpResponse<PerspectiveModel> > {
 		const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_PERSPECTIVE;
 		const userToken = this.authenticationService.getUserToken();

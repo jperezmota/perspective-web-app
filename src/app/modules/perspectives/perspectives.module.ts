@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthorsService } from './services/authors.service';
 import { CategoriesService } from './services/categories.service';
 import { CreatePerspectiveComponent } from './pages/create-perspective/create-perspective.component';
+import { PerspectiveProfileComponent } from './pages/perspective-profile/perspective-profile.component';
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { CreatePerspectiveComponent } from './pages/create-perspective/create-pe
     ],
     declarations: [
         PerspectivesListComponent,
-        CreatePerspectiveComponent
+        CreatePerspectiveComponent,
+        PerspectiveProfileComponent
     ],
     providers: [
         PerspectiveService, AuthorsService, CategoriesService

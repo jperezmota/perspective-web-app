@@ -24,7 +24,7 @@ export class PerspectivesListComponent implements OnInit {
     }
 
     navigateToPerspectiveView(id: number): void {
-        // this.router.navigate(['perspectives', id]);
+        this.router.navigate(['perspectives', id]);
     }
 
     navigateToCreatePerspectivePage() {
