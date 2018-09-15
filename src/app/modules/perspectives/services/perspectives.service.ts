@@ -1,23 +1,32 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from "../../../../../node_modules/@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { ApiInfo } from "../../../shared/api-info";
 import { PerspectiveModel } from "../models/perspective.model";
-import { catchError } from "../../../../../node_modules/rxjs/operators";
-import { throwError, Observable } from "../../../../../node_modules/rxjs";
-import { Injectable } from "../../../../../node_modules/@angular/core";
+import { catchError } from "rxjs/operators";
+import { throwError, Observable } from "rxjs";
+import { Injectable } from "@angular/core";
+import { AuthenticationService } from "../../auth/services/authentication.service";
 
 
 @Injectable()
 export class PerspectiveService {
 
-    constructor (private http: HttpClient) {}
+    constructor (private http: HttpClient, private authenticationService: AuthenticationService) {}
+
+	public createPerspective(perspective: any): Observable< HttpResponse<PerspectiveModel> > {
+		const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_PERSPECTIVE;
+		const userToken = this.authenticationService.getUserToken();
+		return this.http.post<PerspectiveModel>(perspectiveApiUrl, perspective, {observe: 'response', headers: new HttpHeaders().set('Authorization', userToken )})
+					    .pipe(catchError(this.handleError));
+	}
 
     public getPerspectives(): Observable< HttpResponse<PerspectiveModel[]> > {
-        const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_PERSPECTIVE;
-        return this.http.get<PerspectiveModel[]>(perspectiveApiUrl, {observe: 'response', headers: new HttpHeaders().set('Authorization', 'asdasdaWEwe12231344' )})
+		const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_PERSPECTIVE;
+		const userToken = this.authenticationService.getUserToken();
+        return this.http.get<PerspectiveModel[]>(perspectiveApiUrl, {observe: 'response', headers: new HttpHeaders().set('Authorization', userToken )})
                         .pipe(
                             catchError(this.handleError)
                         );
-    }
+	}
 
     private handleError(errorResponse: HttpErrorResponse) {
         const clientSideOrNetworkError = errorResponse.error instanceof ErrorEvent;
@@ -28,7 +37,7 @@ export class PerspectiveService {
 			if (errorResponse.status === 404) {
 				return throwError(errorResponse.error.message);
 			} else {
-				console.error( `Backend returned code ${errorResponse.status}, ` + `body was: ${errorResponse.error}`);
+				console.error( `Backend returned code ${errorResponse.status}, ` + `body was: ${JSON.stringify(errorResponse.error)}`);
 			}
 		}
 

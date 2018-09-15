@@ -59,6 +59,10 @@ export class AuthenticationService implements AuthService {
 		return this.authenticatedUser.username;
 	}
 
+	public getUserToken(): string {
+		return this.authenticatedUser.token;
+	}
+
 	private handleErrorr(errorResponse: HttpErrorResponse) {
 
 		const clientSideOrNetworkError = errorResponse.error instanceof ErrorEvent;

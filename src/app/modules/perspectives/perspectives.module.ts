@@ -1,23 +1,32 @@
 import { NgModule } from '@angular/core';
 import { PerspectivesListComponent } from './pages/perspectives-list/perspectives-list.component';
-import { CommonModule } from '../../../../node_modules/@angular/common';
+import { CommonModule } from '@angular/common';
 import { PerspectivesRoutingModule } from './perspectives-routing.module';
 import { PartialsModule } from '../partials/partials.module';
 import { PerspectiveService } from './services/perspectives.service';
-import { PerspectiveComponent } from './pages/perspective/perspective.component';
+import { MatButtonModule, MatInputModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
+import { AuthorsService } from './services/authors.service';
+import { CategoriesService } from './services/categories.service';
+import { CreatePerspectiveComponent } from './pages/create-perspective/create-perspective.component';
 
 @NgModule({
     imports: [
         CommonModule,
+        FormsModule,
         PerspectivesRoutingModule,
-        PartialsModule
+        PartialsModule,
+        MatButtonModule,
+        MatInputModule,
+        MatSelectModule,
+		MatFormFieldModule
     ],
     declarations: [
         PerspectivesListComponent,
-        PerspectiveComponent
+        CreatePerspectiveComponent
     ],
     providers: [
-        PerspectiveService
+        PerspectiveService, AuthorsService, CategoriesService
     ]
 })
 export class PerspectivesModule {}

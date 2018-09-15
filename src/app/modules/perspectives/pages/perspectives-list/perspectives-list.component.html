@@ -1,4 +1,6 @@
 <!--begin:: Widgets/Best Sellers-->
+<button mat-fab color="primary" (click)="navigateToCreatePerspectivePage()">Create</button>
+<br><br>
 
 <m-portlet>
     <!-- use ng-container[mPortletHeadTitle] for the title -->
@@ -8,6 +10,7 @@
                 Your Perspectives
             </h3>
         </div>
+        
     </ng-container>
 
     <!-- use ng-container[mPortletBody] for the body content -->
@@ -28,7 +31,7 @@
                                 <strong>Author:</strong>
                             </span>
                             <span class="m-widget5__info-author-name">
-                                {{ perspective.author.name }}
+                                {{ perspective.author?.name }}
                             </span>
                         </div>
                     </div>
@@ -36,7 +39,7 @@
 
                 <div class="m-widget5__content">
                     <div class="m-widget5__stats1">
-                        <span class="m-widget5__number">{{ perspective.cagetory.name }}</span>
+                        <span class="m-widget5__number">{{ perspective.cagetory?.name }}</span>
                         <br>
                         <span class="m-widget5__sales">Category</span>
                     </div>

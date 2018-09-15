@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PerspectivesListComponent } from './pages/perspectives-list/perspectives-list.component';
-import { PerspectiveComponent } from './pages/perspective/perspective.component';
+import { CreatePerspectiveComponent } from './pages/create-perspective/create-perspective.component';
 
 const routes: Routes = [
     {
@@ -9,8 +9,8 @@ const routes: Routes = [
         component: PerspectivesListComponent
     },
     {
-        path: ':id',
-        component: PerspectiveComponent
+        path: 'create',
+        component: CreatePerspectiveComponent
     }
 ];
 

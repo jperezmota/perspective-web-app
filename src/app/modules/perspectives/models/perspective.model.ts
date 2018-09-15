@@ -4,4 +4,5 @@ export interface PerspectiveModel {
     id: number;
     perspective: string;
     author: AuthorModel;
+    thoughts: string;
 }
