@@ -1,3 +1,10 @@
+<h3 class="m-subheader__title">
+    Perspective # {{ perspective?.id }}
+</h3>
+<br>
+<br>
+
+
 <div class="alert alert-danger" role="alert" *ngIf="errorMessage" [innerHTML]="errorMessage"></div>
 
 <m-portlet>
@@ -16,15 +23,16 @@
             <div class="form-group">
                 <mat-form-field class="full-width-input">
                     <mat-label>Perspective</mat-label>
-                    <textarea matInput name="perspective" pattern=".*\S+.*" [readonly]="readOnlyForm" placeholder="Leave your Perspective." [(ngModel)]="modifiedPerspective.perspective" rows="5"
-                        required></textarea>
+                    <textarea matInput name="perspective" pattern=".*\S+.*" [readonly]="readOnlyForm" placeholder="Leave your Perspective." [(ngModel)]="modifiedPerspective.perspective"
+                        rows="5" required></textarea>
                 </mat-form-field>
             </div>
 
             <div class="form-group">
                 <mat-form-field class="full-width-input">
                     <mat-label>Thoughts</mat-label>
-                    <textarea matInput class="form-control-lg" name="thoughts" [readonly]="readOnlyForm"  placeholder="Comment what you think about it." [(ngModel)]="modifiedPerspective.thoughts" rows="5"></textarea>
+                    <textarea matInput class="form-control-lg" name="thoughts" [readonly]="readOnlyForm" placeholder="Comment what you think about it."
+                        [(ngModel)]="modifiedPerspective.thoughts" rows="5"></textarea>
                 </mat-form-field>
             </div>
 
@@ -55,15 +63,15 @@
             </div>
             <div class="row" *ngIf="readOnlyForm">
                 <div class="col">
-                        <button mat-raised-button color="primary" type="button" (click)="changeReadOnlyForm()">Modify</button>
+                    <button mat-raised-button color="primary" type="button" (click)="changeReadOnlyForm()">Modify</button>
                 </div>
             </div>
             <div class="row" *ngIf="!readOnlyForm">
                 <div class="col">
-                        <button mat-raised-button color="primary" type="submit" [disabled]="!f.valid">Save</button>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="!f.valid">Save</button>
                 </div>
                 <div class="col">
-                        <button mat-raised-button type="button" (click)="resetForm()">Cancel</button>
+                    <button mat-raised-button type="button" (click)="resetForm()">Cancel</button>
                 </div>
             </div>
         </form>
