@@ -1,81 +1,101 @@
-<h3 class="m-subheader__title">
-    Perspective # {{ perspective?.id }}
-</h3>
+<div class="row">
+    <div clas="col">
+        <h3 class="m-subheader__title">
+            Perspective # {{ perspective?.id }}
+        </h3>
+        <br>
+        <br>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage" [innerHTML]="errorMessage"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <button mat-fab color="warn" class="float-right" (click)="openConfirmation()">Delete</button>
+    </div>
+</div>
+
 <br>
-<br>
 
+<div class="row">
+    <div class="col">
+        <m-portlet>
+            <!-- use ng-container[mPortletHeadTitle] for the title -->
+            <ng-container mPortletHeadTitle>
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
 
-<div class="alert alert-danger" role="alert" *ngIf="errorMessage" [innerHTML]="errorMessage"></div>
-
-<m-portlet>
-    <!-- use ng-container[mPortletHeadTitle] for the title -->
-    <ng-container mPortletHeadTitle>
-        <div class="m-portlet__head-title">
-            <h3 class="m-portlet__head-text">
-            </h3>
-        </div>
-    </ng-container>
-
-    <!-- use ng-container[mPortletBody] for the body content -->
-    <ng-container mPortletBody>
-        <form class="m-login__form m-form" name="form" (ngSubmit)="processingForm()" #f="ngForm" novalidate>
-
-            <div class="form-group">
-                <mat-form-field class="full-width-input">
-                    <mat-label>Perspective</mat-label>
-                    <textarea matInput name="perspective" pattern=".*\S+.*" [readonly]="readOnlyForm" placeholder="Leave your Perspective." [(ngModel)]="modifiedPerspective.perspective"
-                        rows="5" required></textarea>
-                </mat-form-field>
-            </div>
-
-            <div class="form-group">
-                <mat-form-field class="full-width-input">
-                    <mat-label>Thoughts</mat-label>
-                    <textarea matInput class="form-control-lg" name="thoughts" [readonly]="readOnlyForm" placeholder="Comment what you think about it."
-                        [(ngModel)]="modifiedPerspective.thoughts" rows="5"></textarea>
-                </mat-form-field>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <mat-form-field class="full-width-input">
-                        <mat-label>Author</mat-label>
-                        <mat-select name="author" [disabled]="readOnlyForm" placeholder="Select Author" [(ngModel)]="modifiedPerspective.authorId">
-                            <mat-option *ngFor="let author of authors" [value]="author.id">
-                                {{ author.name }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <!-- <input type="text" class="form-control" placeholder="First name"> -->
+                    </h3>
                 </div>
+            </ng-container>
 
-                <div class="col">
-                    <mat-form-field class="full-width-input">
-                        <mat-label>Category</mat-label>
-                        <mat-select name="category" [disabled]="readOnlyForm" placeholder="Select Category" [(ngModel)]="modifiedPerspective.categoryId">
-                            <mat-option *ngFor="let category of categories" [value]="category.id">
-                                {{ category.name }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <!-- <input type="text" class="form-control" placeholder="Last name"> -->
-                </div>
-            </div>
-            <div class="row" *ngIf="readOnlyForm">
-                <div class="col">
-                    <button mat-raised-button color="primary" type="button" (click)="changeReadOnlyForm()">Modify</button>
-                </div>
-            </div>
-            <div class="row" *ngIf="!readOnlyForm">
-                <div class="col">
-                    <button mat-raised-button color="primary" type="submit" [disabled]="!f.valid">Save</button>
-                </div>
-                <div class="col">
-                    <button mat-raised-button type="button" (click)="resetForm()">Cancel</button>
-                </div>
-            </div>
-        </form>
-    </ng-container>
-</m-portlet>
+            <!-- use ng-container[mPortletBody] for the body content -->
+            <ng-container mPortletBody>
+                <form class="m-login__form m-form" name="form" (ngSubmit)="processingForm()" #f="ngForm" novalidate>
 
-<!--end:: Widgets/Best Sellers-->
+                    <div class="form-group">
+                        <mat-form-field class="full-width-input">
+                            <mat-label>Perspective</mat-label>
+                            <textarea matInput name="perspective" pattern=".*\S+.*" [readonly]="readOnlyForm" placeholder="Leave your Perspective." [(ngModel)]="modifiedPerspective.perspective"
+                                rows="5" required></textarea>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field class="full-width-input">
+                            <mat-label>Thoughts</mat-label>
+                            <textarea matInput class="form-control-lg" name="thoughts" [readonly]="readOnlyForm" placeholder="Comment what you think about it."
+                                [(ngModel)]="modifiedPerspective.thoughts" rows="5"></textarea>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width-input">
+                                <mat-label>Author</mat-label>
+                                <mat-select name="author" [disabled]="readOnlyForm" placeholder="Select Author" [(ngModel)]="modifiedPerspective.authorId">
+                                    <mat-option *ngFor="let author of authors" [value]="author.id">
+                                        {{ author.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <!-- <input type="text" class="form-control" placeholder="First name"> -->
+                        </div>
+
+                        <div class="col">
+                            <mat-form-field class="full-width-input">
+                                <mat-label>Category</mat-label>
+                                <mat-select name="category" [disabled]="readOnlyForm" placeholder="Select Category" [(ngModel)]="modifiedPerspective.categoryId">
+                                    <mat-option *ngFor="let category of categories" [value]="category.id">
+                                        {{ category.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <!-- <input type="text" class="form-control" placeholder="Last name"> -->
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="readOnlyForm">
+                        <div class="col">
+                            <button mat-raised-button color="primary" type="button" (click)="changeReadOnlyForm()">Modify</button>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="!readOnlyForm">
+                        <div class="col-1">
+                            <button mat-raised-button color="primary" type="submit" [disabled]="!f.valid">Save</button>
+                        </div>
+                        <div class="col">
+                            <button mat-raised-button type="button" (click)="resetForm()">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </ng-container>
+        </m-portlet>
+
+        <!--end:: Widgets/Best Sellers-->
+    </div>
+</div>

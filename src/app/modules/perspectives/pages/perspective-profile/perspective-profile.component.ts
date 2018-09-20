@@ -8,6 +8,8 @@ import { CategoryModel } from "../../models/category.model";
 import { PerspectiveService } from "../../services/perspectives.service";
 import { PerspectiveModel } from "../../models/perspective.model";
 import { Router, ActivatedRoute, Params } from "../../../../../../node_modules/@angular/router";
+import { NgbModal, ModalDismissReasons } from "../../../../../../node_modules/@ng-bootstrap/ng-bootstrap";
+import { ConfirmationModalComponent } from "../../../shared/components/confirmation-modal/confirmation-modal.component";
 
 @Component({
     selector: 'm-pers-perspective',
@@ -24,6 +26,7 @@ export class PerspectiveProfileComponent implements OnInit, OnDestroy {
     categories: CategoryModel[] = [];
 
     errorMessage: String = '';
+    closeResult: string;
 
     private perspectiveSubscription: Subscription;
     private paramsSubscription: Subscription;
@@ -34,7 +37,8 @@ export class PerspectiveProfileComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private authorsService: AuthorsService,
         private categoriesService: CategoriesService,
-        private perspectiveService: PerspectiveService) { }
+        private perspectiveService: PerspectiveService,
+        private modalService: NgbModal) { }
 
     ngOnInit() {
         const perspectiveId: number = parseInt(this.route.snapshot.params['id']);
@@ -80,6 +84,20 @@ export class PerspectiveProfileComponent implements OnInit, OnDestroy {
         );
     }
 
+    openConfirmation() {
+        const modalRef = this.modalService.open(ConfirmationModalComponent, {ariaLabelledBy: 'modal-basic-title'});
+        modalRef.componentInstance.message = 'You are about to delete this Perspective permanently.';
+        modalRef.componentInstance.confirmationButtonMessage = 'Delete Perspective';
+
+        modalRef.result.then(
+            (result) => {
+                if (result) {
+                    this.deletePerspective();
+                }
+            }, (reason) => {
+            });
+      }
+
     changeReadOnlyForm () {
         this.readOnlyForm = !this.readOnlyForm;
     }
@@ -90,6 +108,17 @@ export class PerspectiveProfileComponent implements OnInit, OnDestroy {
                 this.router.navigate(['perspectives']);
             },
             error => {
+                this.errorMessage += error + '<br>';
+            }
+        );
+    }
+
+    private deletePerspective(): void {
+        this.perspectiveService.deletePerspective(this.perspective.id).subscribe(
+            (response: HttpResponse<any>) => {
+                this.router.navigate(['perspectives']);
+            },
+            (error) => {
                 this.errorMessage += error + '<br>';
             }
         );

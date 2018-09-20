@@ -10,7 +10,7 @@ import { PerspectiveService } from '../../services/perspectives.service';
 import { PerspectiveModel } from '../../models/perspective.model';
 
 @Component({
-    selector: 'm-pers-perspective',
+    selector: 'm-pers-create-perspective',
     templateUrl: './create-perspective.component.html',
     styleUrls: ['./create-perspective.component.scss']
 })
