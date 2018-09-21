@@ -41,7 +41,7 @@
                                 <strong>Author:</strong>
                             </span>
                             <span class="m-widget5__info-author-name">
-                                {{ perspective.author?.name }}
+                                {{ perspective.author ? perspective.author.name : 'None' }}
                             </span>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
 
                 <div class="m-widget5__content">
                     <div class="m-widget5__stats1">
-                        <span class="m-widget5__number">{{ perspective.category?.name }}</span>
+                        <span class="m-widget5__number">{{ perspective.category ? perspective.category.name : 'None'}}</span>
                         <br>
                         <span class="m-widget5__sales">Category</span>
                     </div>
