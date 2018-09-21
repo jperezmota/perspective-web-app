@@ -11,6 +11,9 @@ export class PagesConfig implements ConfigModel {
 					desc: 'Latest updates and statistic charts'
 				}
 			},
+			perspectives: {
+				page: { title: 'Perspectives', desc: 'Perspectives' }
+			},
 			builder: {
 				page: { title: 'Layout Builder', desc: 'Layout builder' }
 			},

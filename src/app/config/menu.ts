@@ -463,6 +463,12 @@ export class MenuConfig implements ConfigModel {
 						badge: {type: 'm-badge--danger', value: '2'},
 						translate: 'MENU.DASHBOARD'
 					},
+					{
+						title: 'Perspectives',
+						root: true,
+						icon: 'flaticon-settings',
+						page: '/perspectives'
+					},
 					{section: 'Tools'},
 					{
 						title: 'Layout Builder',

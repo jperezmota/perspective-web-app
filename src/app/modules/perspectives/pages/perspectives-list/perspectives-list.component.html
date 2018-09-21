@@ -1,0 +1,63 @@
+<div class="row">
+    <div clas="col">
+        <h3 class="m-subheader__title">
+            Your Perspectives
+        </h3>
+    </div>
+</div>
+<br><br>
+
+
+<!--begin:: Widgets/Best Sellers-->
+<button mat-fab color="primary" (click)="navigateToCreatePerspectivePage()">Create</button>
+<br>
+<br>
+
+<m-portlet>
+    <!-- use ng-container[mPortletHeadTitle] for the title -->
+    <ng-container mPortletHeadTitle>
+        <div class="m-portlet__head-title">
+            <h3 class="m-portlet__head-text">
+            </h3>
+        </div>
+
+    </ng-container>
+
+    <!-- use ng-container[mPortletBody] for the body content -->
+    <ng-container mPortletBody *ngFor="let perspective of perspectives">
+        <!--begin::m-widget5-->
+        <div class="m-widget5" (click)="navigateToPerspectiveView(perspective.id)">
+            <div class="m-widget5__item">
+                <div class="m-widget5__content">
+                    <div class="m-widget5__section">
+                        <h4 class="m-widget5__title">
+                            {{ perspective.id }}
+                        </h4>
+                        <span class="m-widget5__desc">
+                            {{ perspective.perspective }}
+                        </span>
+                        <div class="m-widget5__info">
+                            <span class="m-widget5__info-label">
+                                <strong>Author:</strong>
+                            </span>
+                            <span class="m-widget5__info-author-name">
+                                {{ perspective.author ? perspective.author.name : 'None' }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-widget5__content">
+                    <div class="m-widget5__stats1">
+                        <span class="m-widget5__number">{{ perspective.category ? perspective.category.name : 'None'}}</span>
+                        <br>
+                        <span class="m-widget5__sales">Category</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::m-widget5-->
+    </ng-container>
+</m-portlet>
+
+<!--end:: Widgets/Best Sellers-->

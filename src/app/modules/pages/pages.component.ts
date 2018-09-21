@@ -19,8 +19,7 @@ import { TranslationService } from '../../core/services/translation.service';
 
 @Component({
 	selector: 'm-pages',
-	templateUrl: './pages.component.html',
-	changeDetection: ChangeDetectionStrategy.OnPush
+	templateUrl: './pages.component.html'
 })
 export class PagesComponent implements OnInit, AfterViewInit {
 	@HostBinding('class') classes = 'm-grid m-grid--hor m-grid--root m-page';

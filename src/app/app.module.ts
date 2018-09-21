@@ -42,6 +42,7 @@ import { ErrorPageComponent } from './modules/pages/snippets/error-page/error-pa
 
 import 'hammerjs';
 import { AuthGuardService } from './modules/auth/guards/auth-guard.service';
+import { ToastrModule } from '../../node_modules/ngx-toastr';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 	// suppressScrollX: true
@@ -51,6 +52,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 	declarations: [AppComponent, ErrorPageComponent],
 	imports: [
 		BrowserAnimationsModule,
+		ToastrModule.forRoot({
+			positionClass: 'toast-top-center',
+			progressBar: true
+		}),
 		BrowserModule,
 		AppRoutingModule,
 		HttpClientModule,
