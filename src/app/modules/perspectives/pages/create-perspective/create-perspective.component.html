@@ -1,4 +1,11 @@
-<div class="alert alert-danger" role="alert" *ngIf="errorMessage" [innerHTML]="errorMessage"></div>
+<div class="row">
+    <div clas="col">
+        <h3 class="m-subheader__title">
+            Creating a Perspective
+        </h3>
+    </div>
+</div>
+<br><br>
 
 <m-portlet>
     <!-- use ng-container[mPortletHeadTitle] for the title -->
@@ -17,15 +24,15 @@
             <div class="form-group">
                 <mat-form-field class="full-width-input">
                     <mat-label>Perspective</mat-label>
-                    <textarea matInput name="perspective" pattern=".*\S+.*" placeholder="Leave your Perspective" [(ngModel)]="perspective.perspective" rows="5"
-                        required></textarea>
+                    <textarea matInput name="perspective" pattern=".*\S+.*" placeholder="Leave your Perspective" maxlength="2500" [(ngModel)]="perspective.perspective"
+                        rows="5" required></textarea>
                 </mat-form-field>
             </div>
 
             <div class="form-group">
                 <mat-form-field class="full-width-input">
                     <mat-label>Thoughts</mat-label>
-                    <textarea matInput class="form-control-lg" name="thoughts" [(ngModel)]="perspective.thoughts" rows="5"></textarea>
+                    <textarea matInput class="form-control-lg" name="thoughts" maxlength="2500" [(ngModel)]="perspective.thoughts" rows="5"></textarea>
                 </mat-form-field>
             </div>
 

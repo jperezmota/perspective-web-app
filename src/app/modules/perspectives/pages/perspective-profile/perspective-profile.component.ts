@@ -10,6 +10,8 @@ import { PerspectiveModel } from "../../models/perspective.model";
 import { Router, ActivatedRoute, Params } from "../../../../../../node_modules/@angular/router";
 import { NgbModal, ModalDismissReasons } from "../../../../../../node_modules/@ng-bootstrap/ng-bootstrap";
 import { ConfirmationModalComponent } from "../../../shared/components/confirmation-modal/confirmation-modal.component";
+import { ToastrService } from "../../../../../../node_modules/ngx-toastr";
+import { AuthenticationService } from "../../../auth/services/authentication.service";
 
 @Component({
     selector: 'm-pers-perspective',
@@ -25,9 +27,6 @@ export class PerspectiveProfileComponent implements OnInit, OnDestroy {
     authors: AuthorModel[] = [];
     categories: CategoryModel[] = [];
 
-    errorMessage: String = '';
-    closeResult: string;
-
     private perspectiveSubscription: Subscription;
     private paramsSubscription: Subscription;
     private authorsSubscription: Subscription;
@@ -38,7 +37,9 @@ export class PerspectiveProfileComponent implements OnInit, OnDestroy {
         private authorsService: AuthorsService,
         private categoriesService: CategoriesService,
         private perspectiveService: PerspectiveService,
-        private modalService: NgbModal) { }
+        private modalService: NgbModal,
+        private toastr: ToastrService,
+        private authenticationService: AuthenticationService) { }
 
     ngOnInit() {
         const perspectiveId: number = parseInt(this.route.snapshot.params['id']);
@@ -52,7 +53,7 @@ export class PerspectiveProfileComponent implements OnInit, OnDestroy {
                 this.fillForm();
             },
             error => {
-                this.errorMessage += 'Something went wrong trying to fetch the perspective. <br>';
+                this.toastr.error('Something went wrong trying to fetch the Perspective.', 'Inconvenient');
             }
         );
 
@@ -70,7 +71,7 @@ export class PerspectiveProfileComponent implements OnInit, OnDestroy {
                 this.authors = response.body;
             },
             error => {
-                this.errorMessage += 'Something went wrong trying to fetch the authors. <br>';
+                this.toastr.error('Something went wrong trying to fetch the Authors.', 'Inconvenient');
             }
         );
 
@@ -79,7 +80,7 @@ export class PerspectiveProfileComponent implements OnInit, OnDestroy {
                 this.categories = response.body;
             },
             error => {
-                this.errorMessage += 'Something went wrong trying to fetch the categories. <br>';
+                this.toastr.error('Something went wrong trying to fetch the Categories.', 'Inconvenient');
             }
         );
     }
@@ -105,10 +106,11 @@ export class PerspectiveProfileComponent implements OnInit, OnDestroy {
     processingForm(): void {
         this.perspectiveService.modifyPerspective(this.modifiedPerspective).subscribe(
             (response: HttpResponse<PerspectiveModel>) => {
-                this.router.navigate(['perspectives']);
+                this.toastr.success('The modification has been successful.', 'Congratulation, ' + this.authenticationService.getUsername() + '.');
+                this.changeReadOnlyForm();
             },
             error => {
-                this.errorMessage += error + '<br>';
+                this.toastr.error(error, 'Inconvenient');
             }
         );
     }
@@ -116,10 +118,11 @@ export class PerspectiveProfileComponent implements OnInit, OnDestroy {
     private deletePerspective(): void {
         this.perspectiveService.deletePerspective(this.perspective.id).subscribe(
             (response: HttpResponse<any>) => {
+                this.toastr.success('Your perspective has been deleted.', 'Congratulation, ' + this.authenticationService.getUsername() + '.');
                 this.router.navigate(['perspectives']);
             },
             (error) => {
-                this.errorMessage += error + '<br>';
+                this.toastr.error(error, 'Inconvenient');
             }
         );
     }

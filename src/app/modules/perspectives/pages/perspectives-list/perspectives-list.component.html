@@ -1,23 +1,26 @@
-<h3 class="m-subheader__title">
-        List of Perspectives
-    </h3>
-    <br>
-    <br>
+<div class="row">
+    <div clas="col">
+        <h3 class="m-subheader__title">
+            Your Perspectives
+        </h3>
+    </div>
+</div>
+<br><br>
 
-    
+
 <!--begin:: Widgets/Best Sellers-->
 <button mat-fab color="primary" (click)="navigateToCreatePerspectivePage()">Create</button>
-<br><br>
+<br>
+<br>
 
 <m-portlet>
     <!-- use ng-container[mPortletHeadTitle] for the title -->
     <ng-container mPortletHeadTitle>
         <div class="m-portlet__head-title">
             <h3 class="m-portlet__head-text">
-                Your Perspectives
             </h3>
         </div>
-        
+
     </ng-container>
 
     <!-- use ng-container[mPortletBody] for the body content -->
@@ -31,7 +34,7 @@
                             {{ perspective.id }}
                         </h4>
                         <span class="m-widget5__desc">
-                                {{ perspective.perspective }}
+                            {{ perspective.perspective }}
                         </span>
                         <div class="m-widget5__info">
                             <span class="m-widget5__info-label">

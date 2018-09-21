@@ -1,16 +1,8 @@
 <div class="row">
     <div clas="col">
         <h3 class="m-subheader__title">
-            Perspective # {{ perspective?.id }}
+            Viewing Perspective # {{ perspective?.id }}
         </h3>
-        <br>
-        <br>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col">
-        <div class="alert alert-danger" role="alert" *ngIf="errorMessage" [innerHTML]="errorMessage"></div>
     </div>
 </div>
 
@@ -41,7 +33,7 @@
                     <div class="form-group">
                         <mat-form-field class="full-width-input">
                             <mat-label>Perspective</mat-label>
-                            <textarea matInput name="perspective" pattern=".*\S+.*" [readonly]="readOnlyForm" placeholder="Leave your Perspective." [(ngModel)]="modifiedPerspective.perspective"
+                            <textarea matInput name="perspective" pattern=".*\S+.*" maxlength="2500" [readonly]="readOnlyForm" placeholder="Leave your Perspective." [(ngModel)]="modifiedPerspective.perspective"
                                 rows="5" required></textarea>
                         </mat-form-field>
                     </div>
@@ -49,7 +41,7 @@
                     <div class="form-group">
                         <mat-form-field class="full-width-input">
                             <mat-label>Thoughts</mat-label>
-                            <textarea matInput class="form-control-lg" name="thoughts" [readonly]="readOnlyForm" placeholder="Comment what you think about it."
+                            <textarea matInput class="form-control-lg" name="thoughts" maxlength="2500" [readonly]="readOnlyForm" placeholder="Comment what you think about it."
                                 [(ngModel)]="modifiedPerspective.thoughts" rows="5"></textarea>
                         </mat-form-field>
                     </div>

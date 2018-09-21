@@ -13,7 +13,7 @@ export class PerspectiveService {
     constructor (private http: HttpClient, private authenticationService: AuthenticationService) {}
 
 	public deletePerspective(perspectiveId: number): Observable< HttpResponse<any> > {
-		const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_PERSPECTIVE + '/11' + perspectiveId;
+		const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_PERSPECTIVE + '/' + perspectiveId;
 		const userToken = this.authenticationService.getUserToken();
         return this.http.delete<any>(perspectiveApiUrl, {observe: 'response', headers: new HttpHeaders().set('Authorization', userToken )})
                         .pipe(
