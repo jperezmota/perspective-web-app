@@ -466,6 +466,11 @@ export class MenuConfig implements ConfigModel {
 						page: '/perspectives'
 					},
 					{
+						title: 'Authors',
+						root: true,
+						page: '/perspectives/authors'
+					},
+					{
 						title: 'Categories',
 						root: true,
 						page: '/perspectives/categories'

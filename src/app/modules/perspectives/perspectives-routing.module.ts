@@ -4,6 +4,7 @@ import { PerspectivesListComponent } from './pages/perspectives-list/perspective
 import { PerspectiveProfileComponent } from './pages/perspective-profile/perspective-profile.component';
 import { CreatePerspectiveComponent } from './pages/create-perspective/create-perspective.component';
 import { CategoriesListComponent } from './pages/categories-list/categories-list.component';
+import { AuthorsListComponent } from './pages/authors-list/authors-list.component';
 
 const routes: Routes = [
     {
@@ -17,6 +18,10 @@ const routes: Routes = [
     {
         path: 'categories',
         component: CategoriesListComponent
+    },
+    {
+        path: 'authors',
+        component: AuthorsListComponent
     },
     {
         path: ':id',
