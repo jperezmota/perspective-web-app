@@ -14,6 +14,9 @@ export class PagesConfig implements ConfigModel {
 			perspectives: {
 				page: { title: 'Perspectives', desc: 'Perspectives' }
 			},
+			categories: {
+				page: { title: 'Categories', desc: 'Categories' }
+			},
 			builder: {
 				page: { title: 'Layout Builder', desc: 'Layout builder' }
 			},

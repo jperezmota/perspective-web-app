@@ -11,6 +11,7 @@ import { CategoriesService } from './services/categories.service';
 import { CreatePerspectiveComponent } from './pages/create-perspective/create-perspective.component';
 import { PerspectiveProfileComponent } from './pages/perspective-profile/perspective-profile.component';
 import { SharedModule } from '../shared/shared.module';
+import { CategoriesListComponent } from './pages/categories-list/categories-list.component';
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import { SharedModule } from '../shared/shared.module';
     declarations: [
         PerspectivesListComponent,
         CreatePerspectiveComponent,
-        PerspectiveProfileComponent
+        PerspectiveProfileComponent,
+        CategoriesListComponent
     ],
     providers: [
         PerspectiveService, AuthorsService, CategoriesService

@@ -458,16 +458,17 @@ export class MenuConfig implements ConfigModel {
 						title: 'Dashboard',
 						desc: 'Some description goes here',
 						root: true,
-						icon: 'flaticon-line-graph',
 						page: '/',
-						badge: {type: 'm-badge--danger', value: '2'},
-						translate: 'MENU.DASHBOARD'
 					},
 					{
 						title: 'Perspectives',
 						root: true,
-						icon: 'flaticon-settings',
 						page: '/perspectives'
+					},
+					{
+						title: 'Categories',
+						root: true,
+						page: '/perspectives/categories'
 					},
 					{section: 'Tools'},
 					{
