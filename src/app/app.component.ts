@@ -62,7 +62,6 @@ export class AppComponent implements AfterViewInit, OnInit {
 				}
 			}
 
-			//	splash screen image
 			this.splashScreenImage = objectPath.get(model.config, 'loader.image');
 		});
 

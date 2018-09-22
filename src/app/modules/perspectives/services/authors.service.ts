@@ -1,10 +1,10 @@
-import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { ApiInfo } from "../../../shared/api-info";
-import { AuthenticationService } from "../../auth/services/authentication.service";
-import { AuthorModel } from "../models/author.model";
-import { Observable, throwError } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { ApiInfo } from '../../../shared/api-info';
+import { AuthenticationService } from '../../auth/services/authentication.service';
+import { AuthorModel } from '../models/author.model';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class AuthorsService {

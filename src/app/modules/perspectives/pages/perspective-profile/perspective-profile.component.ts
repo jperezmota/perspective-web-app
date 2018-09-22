@@ -1,17 +1,17 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Subscription } from "rxjs";
-import { AuthorsService } from "../../services/authors.service";
-import { HttpResponse } from "@angular/common/http";
-import { AuthorModel } from "../../models/author.model";
-import { CategoriesService } from "../../services/categories.service";
-import { CategoryModel } from "../../models/category.model";
-import { PerspectiveService } from "../../services/perspectives.service";
-import { PerspectiveModel } from "../../models/perspective.model";
-import { Router, ActivatedRoute, Params } from "../../../../../../node_modules/@angular/router";
-import { NgbModal, ModalDismissReasons } from "../../../../../../node_modules/@ng-bootstrap/ng-bootstrap";
-import { ConfirmationModalComponent } from "../../../shared/components/confirmation-modal/confirmation-modal.component";
-import { ToastrService } from "../../../../../../node_modules/ngx-toastr";
-import { AuthenticationService } from "../../../auth/services/authentication.service";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthorsService } from '../../services/authors.service';
+import { HttpResponse } from '@angular/common/http';
+import { AuthorModel } from '../../models/author.model';
+import { CategoriesService } from '../../services/categories.service';
+import { CategoryModel } from '../../models/category.model';
+import { PerspectiveService } from '../../services/perspectives.service';
+import { PerspectiveModel } from '../../models/perspective.model';
+import { Router, ActivatedRoute, Params } from '../../../../../../node_modules/@angular/router';
+import { NgbModal, ModalDismissReasons } from '../../../../../../node_modules/@ng-bootstrap/ng-bootstrap';
+import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
+import { ToastrService } from '../../../../../../node_modules/ngx-toastr';
+import { AuthenticationService } from '../../../auth/services/authentication.service';
 
 @Component({
     selector: 'm-pers-perspective',
