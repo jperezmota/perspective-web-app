@@ -1,10 +1,10 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from "@angular/common/http";
-import { ApiInfo } from "../../../shared/api-info";
-import { PerspectiveModel } from "../models/perspective.model";
-import { catchError } from "rxjs/operators";
-import { throwError, Observable } from "rxjs";
-import { Injectable } from "@angular/core";
-import { AuthenticationService } from "../../auth/services/authentication.service";
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { ApiInfo } from '../../../shared/api-info';
+import { PerspectiveModel } from '../models/perspective.model';
+import { catchError } from 'rxjs/operators';
+import { throwError, Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { AuthenticationService } from '../../auth/services/authentication.service';
 
 
 @Injectable()
@@ -15,42 +15,76 @@ export class PerspectiveService {
 	public deletePerspective(perspectiveId: number): Observable< HttpResponse<any> > {
 		const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_PERSPECTIVE + '/' + perspectiveId;
 		const userToken = this.authenticationService.getUserToken();
-        return this.http.delete<any>(perspectiveApiUrl, {observe: 'response', headers: new HttpHeaders().set('Authorization', userToken )})
-                        .pipe(
-                            catchError(this.handleError)
-                        );
+
+		return this.http.delete<any>( perspectiveApiUrl,
+									  {
+										  observe: 'response',
+									      headers: new HttpHeaders().set('Authorization', userToken )
+									  }
+									)
+									.pipe(
+										catchError(this.handleError)
+									);
 	}
 
 	public getPerspective(perspectiveId: number): Observable< HttpResponse<PerspectiveModel> > {
 		const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_PERSPECTIVE + '/' + perspectiveId;
 		const userToken = this.authenticationService.getUserToken();
-        return this.http.get<PerspectiveModel>(perspectiveApiUrl, {observe: 'response', headers: new HttpHeaders().set('Authorization', userToken )})
-                        .pipe(
-                            catchError(this.handleError)
-                        );
+
+		return this.http.get<PerspectiveModel>( perspectiveApiUrl,
+											    {
+													observe: 'response',
+												    headers: new HttpHeaders().set('Authorization', userToken )
+											    }
+											  )
+											  .pipe(
+												  catchError(this.handleError)
+											  );
 	}
 
 	public modifyPerspective(perspective: any): Observable< HttpResponse<PerspectiveModel> > {
 		const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_PERSPECTIVE + '/' + perspective.id;
 		const userToken = this.authenticationService.getUserToken();
-		return this.http.patch<PerspectiveModel>(perspectiveApiUrl, perspective, {observe: 'response', headers: new HttpHeaders().set('Authorization', userToken )})
-					    .pipe(catchError(this.handleError));
+
+		return this.http.patch<PerspectiveModel>( perspectiveApiUrl,
+												  perspective,
+												  {
+													  observe: 'response',
+													  headers: new HttpHeaders().set('Authorization', userToken )
+												  }
+												)
+												.pipe(
+													catchError(this.handleError)
+												);
 	}
 
 	public createPerspective(perspective: any): Observable< HttpResponse<PerspectiveModel> > {
 		const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_PERSPECTIVE;
 		const userToken = this.authenticationService.getUserToken();
-		return this.http.post<PerspectiveModel>(perspectiveApiUrl, perspective, {observe: 'response', headers: new HttpHeaders().set('Authorization', userToken )})
-					    .pipe(catchError(this.handleError));
+
+		return this.http.post<PerspectiveModel>( perspectiveApiUrl,
+												 perspective,
+												 {
+													 observe: 'response',
+													 headers: new HttpHeaders().set('Authorization', userToken )
+												 }
+												)
+					    						.pipe(catchError(this.handleError));
 	}
 
     public getPerspectives(): Observable< HttpResponse<PerspectiveModel[]> > {
 		const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_PERSPECTIVE;
 		const userToken = this.authenticationService.getUserToken();
-        return this.http.get<PerspectiveModel[]>(perspectiveApiUrl, {observe: 'response', headers: new HttpHeaders().set('Authorization', userToken )})
-                        .pipe(
-                            catchError(this.handleError)
-                        );
+
+		return this.http.get<PerspectiveModel[]>( perspectiveApiUrl,
+												  {
+													  observe: 'response',
+													  headers: new HttpHeaders().set('Authorization', userToken )
+													}
+												)
+												.pipe(
+													catchError(this.handleError)
+												);
 	}
 
     private handleError(errorResponse: HttpErrorResponse) {

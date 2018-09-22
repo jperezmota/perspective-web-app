@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiInfo } from '../../../shared/api-info';
 import { AuthenticationService } from '../../auth/services/authentication.service';
@@ -14,11 +14,15 @@ export class CategoriesService {
     public getCategories(): Observable< HttpResponse<CategoryModel[]> > {
         const categoriesUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_CATEGORIES;
         const userToken = this.authenticationService.getUserToken();
-        return this.http.get<CategoryModel[]>( categoriesUrl,
-                              {observe: 'response', headers: new HttpHeaders().set('Authorization', userToken) }
-                        ).pipe(
-                            catchError(this.handleError)
-                        );
+
+        return this.http.get<CategoryModel[]>(categoriesUrl,
+                                               {
+                                                   observe: 'response',
+                                                   headers: new HttpHeaders().set('Authorization', userToken)
+                                               }
+                                            ).pipe(
+                                                catchError(this.handleError)
+                                            );
     }
 
     private handleError(errorResponse: HttpErrorResponse) {
