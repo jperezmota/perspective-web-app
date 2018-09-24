@@ -6,6 +6,7 @@ import { LayoutModule } from '../../../layout/layout.module';
 import { PartialsModule } from '../../../partials/partials.module';
 import { ListTimelineModule } from '../../../partials/layout/quick-sidebar/list-timeline/list-timeline.module';
 import { WidgetChartsModule } from '../../../partials/content/widgets/charts/widget-charts.module';
+import { TheySaidSoService } from '../../../perspectives/services/theysaidso.service';
 
 @NgModule({
 	imports: [
@@ -21,7 +22,7 @@ import { WidgetChartsModule } from '../../../partials/content/widgets/charts/wid
 			}
 		])
 	],
-	providers: [],
+	providers: [TheySaidSoService],
 	declarations: [DashboardComponent]
 })
 export class DashboardModule {}
