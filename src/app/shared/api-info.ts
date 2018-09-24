@@ -4,5 +4,7 @@ export class ApiInfo {
     public static API_ENDPOINT_PERSPECTIVE: string = 'perspectives';
     public static API_ENDPOINT_AUTHORS: string = 'authors';
     public static API_ENDPOINT_CATEGORIES: string = 'categories';
+
+    public static API_ENDPOINT_THEYSAIDSO_QUOTES = 'http://quotes.rest/qod.json';
 }
 

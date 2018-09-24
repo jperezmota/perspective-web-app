@@ -1,64 +1,41 @@
 <!--Begin::Section-->
 <div class="row">
-	<div class="col-xl-4">
-		<m-finance-stats></m-finance-stats>
-	</div>
-	<div class="col-xl-4">
-		<m-blog></m-blog>
-	</div>
-	<div class="col-xl-4">
-		<m-packages></m-packages>
+	<div class="col">
+		<h1 class="text-center">Perspectives of The Day</h1>
 	</div>
 </div>
-<!--End::Section-->
 
-<!--Begin::Section-->
-<div class="m-portlet">
-	<div class="m-portlet__body m-portlet__body--no-padding">
-		<div class="row m-row--no-padding m-row--col-separator-xl">
-			<div class="col-xl-4">
-				<m-stat></m-stat>
+<br>
+<br>
+
+<div class="row">
+
+	<div class="col-xl-4" *ngFor="let perspective of perspectives">
+		<div class="card text-center">
+			<div>
+				<img class="card-img-top" class="img-fluid" style="width:80px;height:80px;" src="../../../../../assets/app/media/img/quotes/110px-Symbol_drizzle_51.svg.png"
+				 alt="Card image cap">
 			</div>
-			<div class="col-xl-4">
-				<m-bar-chart></m-bar-chart>
+
+			<div class="card-body">
+				<h3 class="card-title text-capitalize">{{perspective.contents.quotes[0].category}}</h3>
+				<hr>
+				<blockquote class="blockquote mb-0">
+					<p>{{ perspective.contents.quotes[0].quote }}</p>
+					<footer class="blockquote-footer">
+						<cite title="Source Title">
+							{{perspective.contents.quotes[0].author}}
+						</cite>
+					</footer>
+				</blockquote>
+				<span style="z-index:50;font-size:0.9em;">
+					<img src="https://theysaidso.com/branding/theysaidso.png" height="20" width="20" alt="theysaidso.com" />
+					<a href="https://theysaidso.com" title="Powered by quotes from theysaidso.com" style="color: #9fcc25; margin-left: 4px; vertical-align: middle;"
+					 target="_blank">theysaidso.com</a>
+				</span>
 			</div>
-			<div class="col-xl-4">
-				<m-doughnut-chart></m-doughnut-chart>
-			</div>
+
 		</div>
-	</div>
-</div>
-<!--End::Section-->
-
-<!--Begin::Section-->
-<div class="row">
-	<div class="col-xl-6">
-		<m-tasks></m-tasks>
-	</div>
-	<div class="col-xl-6">
-		<m-support-tickets></m-support-tickets>
-	</div>
-</div>
-<!--End::Section-->
-
-<!--Begin::Section-->
-<div class="row">
-	<div class="col-xl-6">
-		<m-recent-activities></m-recent-activities>
-	</div>
-	<div class="col-xl-6">
-		<m-recent-notifications></m-recent-notifications>
-	</div>
-</div>
-<!--End::Section-->
-
-<!--Begin::Section-->
-<div class="row">
-	<div class="col-xl-8">
-		<m-best-seller></m-best-seller>
-	</div>
-	<div class="col-xl-4">
-		<m-author-profit></m-author-profit>
 	</div>
 </div>
 <!--End::Section-->
