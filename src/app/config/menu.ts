@@ -458,29 +458,26 @@ export class MenuConfig implements ConfigModel {
 						title: 'Dashboard',
 						desc: 'Some description goes here',
 						root: true,
+						icon: 'flaticon-home',
 						page: '/',
 					},
 					{
 						title: 'Perspectives',
 						root: true,
+						icon: '	flaticon-file',
 						page: '/perspectives'
 					},
 					{
 						title: 'Authors',
 						root: true,
+						icon: 'flaticon-users',
 						page: '/perspectives/authors'
 					},
 					{
 						title: 'Categories',
 						root: true,
+						icon: 'flaticon-folder-1',
 						page: '/perspectives/categories'
-					},
-					{section: 'Tools'},
-					{
-						title: 'Layout Builder',
-						root: true,
-						icon: 'flaticon-settings',
-						page: '/builder'
 					}
 				]
 			}
