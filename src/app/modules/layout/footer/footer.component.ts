@@ -12,6 +12,8 @@ import * as objectPath from 'object-path';
 export class FooterComponent implements OnInit {
 	@HostBinding('class') classes = 'm-grid__item m-footer';
 
+	currentYear = new Date().getFullYear();
+
 	footerContainerClass$: BehaviorSubject<string> = new BehaviorSubject('');
 
 	constructor(private configService: LayoutConfigService) {
