@@ -1,6 +1,6 @@
 # Perspective App
 
-A Personal Development Web Application to have all your Perspectives in one place! No more missed Perstives or difficulty in finding them in notebooks or scattered sticky notes.
+A Personal Development Web Application to have all your Perspectives in one place! No more missed Perspectives or difficulty in finding them in notebooks or scattered sticky notes.
 
 <p align="center">
     <img src="https://i.postimg.cc/8zTwMsN6/responsive-mockup.png" />             
@@ -13,6 +13,7 @@ Front-End:
 * [Angular](https://angular.io/) - A JavaScript framework.
 * [Ng Bootstrap](https://ng-bootstrap.github.io/#/home) - Angular widgets built from the ground up using only Bootstrap 4.
 * [Angular Material](https://material.angular.io/) - Material Design components for Angular.
+* [They Said So](https://theysaidso.com/api/) - A Famous Quotes API.
 
 Back-End:
 
@@ -25,13 +26,13 @@ Back-End:
 **Important Side Note:** This back-end API is a separte project and can be found here: [Perspective API](https://github.com/jperezmota/perspective-api)
 
 ## Install
-#### Prequisites
+#### Prerequisites
 
 1. Setup the [Perspective API](https://github.com/jperezmota/perspective-web-app).
 
 2. Install the following tools in your machine:
 
-* [npm](https://www.npmjs.com) A package manager for JavaScript.
+* [npm](https://www.npmjs.com) - A package manager for JavaScript.
 * [Angular CLI](https://cli.angular.io/) - A command line interface for Angular.
 
 If you have finished with these two steps, then follow with the Installation Process below.
