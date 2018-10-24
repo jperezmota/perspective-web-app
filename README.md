@@ -23,7 +23,11 @@ Back-End ([Perspective API](https://github.com/jperezmota/perspective-api))
 * [Flyway](https://flywaydb.org/) - Database Migration Tool.
 * [Maven](https://maven.apache.org/) - Dependency Management.
 
-**Important Side Note:** This back-end API is a separte project and can be found here: [Perspective API](https://github.com/jperezmota/perspective-api)
+Side Note: This back-end API is a separte project and can be found here: [Perspective API](https://github.com/jperezmota/perspective-api)
+
+Gitflow Workflow **(Important)**
+
+This project is using [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow), therefore to see the development code switch to the branch called **develop**. Master branch is for production purpose only.
 
 ## Install
 #### Prerequisites
