@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse, HttpParams } from '@angular/common/http';
 import { ApiInfo } from '../../../shared/api-info';
 import { PerspectiveModel } from '../models/perspective.model';
 import { catchError } from 'rxjs/operators';
@@ -72,14 +72,20 @@ export class PerspectiveService {
 					    						.pipe(catchError(this.handleError));
 	}
 
-    public getPerspectives(): Observable< HttpResponse<PerspectiveModel[]> > {
+    public getPerspectives(searchTerm: string = ''): Observable< HttpResponse<PerspectiveModel[]> > {
 		const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_PERSPECTIVE;
 		const userToken = this.authenticationService.getUserToken();
+		let httpParams = new HttpParams();
+
+		if (searchTerm) {
+			httpParams = httpParams.set('searchTerm', searchTerm);
+		}
 
 		return this.http.get<PerspectiveModel[]>( perspectiveApiUrl,
 												  {
 													  observe: 'response',
-													  headers: new HttpHeaders().set('Authorization', userToken )
+													  headers: new HttpHeaders().set('Authorization', userToken ),
+													  params: httpParams
 													}
 												)
 												.pipe(

@@ -3,6 +3,7 @@ import { CommonModule } from "../../../../node_modules/@angular/common";
 import { FormsModule } from "../../../../node_modules/@angular/forms";
 import { ConfirmationModalComponent } from "./components/confirmation-modal/confirmation-modal.component";
 import { MatButtonModule } from "../../../../node_modules/@angular/material";
+import { FilterTermComponent } from "./components/filter-term/filter-term-component";
 
 @NgModule({
     imports: [
@@ -11,10 +12,12 @@ import { MatButtonModule } from "../../../../node_modules/@angular/material";
         MatButtonModule
     ],
     declarations: [
-        ConfirmationModalComponent
+        ConfirmationModalComponent,
+        FilterTermComponent
     ],
     exports: [
-        ConfirmationModalComponent
+        ConfirmationModalComponent,
+        FilterTermComponent
     ],
     entryComponents: [
         ConfirmationModalComponent

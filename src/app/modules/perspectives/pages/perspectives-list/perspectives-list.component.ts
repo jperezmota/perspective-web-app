@@ -33,6 +33,12 @@ export class PerspectivesListComponent implements OnInit, OnDestroy {
         this.router.navigate(['create'], { relativeTo: this.route });
     }
 
+    onFilterSearchProcessed(searchTerm: string) {
+        if (searchTerm) {
+            
+        }
+    }
+
     ngOnDestroy() {
         this.perspectivesSubscription.unsubscribe();
     }

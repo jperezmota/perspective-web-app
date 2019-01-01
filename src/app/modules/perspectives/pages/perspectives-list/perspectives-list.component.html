@@ -13,6 +13,9 @@
 <br>
 <br>
 
+<m-pers-filter-term placeHolder="Search by Id or Title" (searchProcessed)="onFilterSearchProcessed($event)"></m-pers-filter-term>
+<br>
+
 <m-portlet>
     <!-- use ng-container[mPortletHeadTitle] for the title -->
     <ng-container mPortletHeadTitle>
@@ -25,6 +28,7 @@
 
     <!-- use ng-container[mPortletBody] for the body content -->
     <ng-container mPortletBody *ngFor="let perspective of perspectives">
+
         <!--begin::m-widget5-->
         <div class="m-widget5" (click)="navigateToPerspectiveView(perspective.id)">
             <div class="m-widget5__item">
@@ -59,5 +63,10 @@
         <!--end::m-widget5-->
     </ng-container>
 </m-portlet>
-
 <!--end:: Widgets/Best Sellers-->
+
+<ng-template #userWithNoPerspectives>
+    <div class="alert alert-primary" role="alert" >
+        Hello Jonathan. You don't have any Perspective registered yet. Click the <b>Create</b> button in the top left corner to register one.
+    </div>
+</ng-template>
