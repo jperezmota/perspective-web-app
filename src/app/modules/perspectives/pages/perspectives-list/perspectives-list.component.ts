@@ -16,7 +16,6 @@ export class PerspectivesListComponent implements OnInit, OnDestroy {
     public perspectives: PerspectiveModel[] = [];
     public userLogged: string;
     public userHasPerspectiveRegistered: boolean = false;
-    public filterFoundResult: boolean = false;
     private perspectivesSubscription: Subscription;
 
     constructor(private perspectiveService: PerspectiveService,
@@ -66,15 +65,11 @@ export class PerspectivesListComponent implements OnInit, OnDestroy {
             (response: HttpResponse<PerspectiveModel[]>) => {
                 this.perspectives = response.body;
                 const resultFound = this.perspectives.length > 0;
-                if (!resultFound) {
-                    this.filterFoundResult = true;
-                }
             }
         );
     }
 
     private removeFilterResult(): void {
-        this.filterFoundResult = false;
         this.perspectivesSubscription = this.perspectiveService.getPerspectives().subscribe(
             (response: HttpResponse<PerspectiveModel[]>) => {
                 this.perspectives = response.body;

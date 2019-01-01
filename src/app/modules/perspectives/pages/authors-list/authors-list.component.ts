@@ -31,4 +31,35 @@ export class AuthorsListComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.authorsSubscription.unsubscribe();
     }
+
+    public onFilterSearchProcessed(searchTerm: string) {
+        if (searchTerm) {
+            this.showFilterResult(searchTerm);
+        } else {
+            this.removeFilterResult();
+        }
+    }
+
+    public onUserLeftInputField(searchTerm: string) {
+        if (!searchTerm) {
+            this.removeFilterResult();
+        }
+    }
+
+    private showFilterResult(searchTerm: string): void {
+        this.authorsSubscription = this.authorsService.getAuthors(searchTerm).subscribe(
+            (response: HttpResponse<AuthorModel[]>) => {
+                this.authors = response.body;
+                const resultFound = this.authors.length > 0;
+            }
+        );
+    }
+
+    private removeFilterResult(): void {
+        this.authorsSubscription = this.authorsService.getAuthors().subscribe(
+            (response: HttpResponse<AuthorModel[]>) => {
+                this.authors = response.body;
+            }
+        );
+    }
 }
