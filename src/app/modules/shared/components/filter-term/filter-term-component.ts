@@ -9,8 +9,13 @@ export class FilterTermComponent {
     searchTerm: string = '';
     @Input() placeHolder: string = 'Introduce your search term.';
     @Output() searchProcessed = new EventEmitter<string>();
+    @Output() userLeftInputField = new EventEmitter<string>();
 
     onSearchClicked() {
         this.searchProcessed.emit(this.searchTerm.trim());
+    }
+
+    onInputBlur() {
+        this.userLeftInputField.emit(this.searchTerm.trim());
     }
 }

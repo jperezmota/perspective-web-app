@@ -12,62 +12,86 @@
 <br>
 <br>
 
-<ng-container *ngIf="perspectives.length == 0; else perspectiveContent">
+<ng-container *ngIf="!userHasPerspectiveRegistered; else perspectiveContent">
     <div class="alert alert-primary" role="alert" >
             Hello {{userLogged}}! You don't have any Perspective registered yet. Feel free to register one by clicking <b>Create button</b> on the top left corner.
     </div>
 </ng-container>
 
 <ng-template #perspectiveContent>
+
     <!-- begin:: Filter -->
-    <m-pers-filter-term placeHolder="Search by Id or Title" (searchProcessed)="onFilterSearchProcessed($event)"></m-pers-filter-term>
+    <m-pers-filter-term placeHolder="Search by Id or Title" (searchProcessed)="onFilterSearchProcessed($event)" (userLeftInputField)="onUserLeftInputField($event)"></m-pers-filter-term>
     <br>
     <!-- end:: Filter -->
 
-    <m-portlet>
-        <!-- use ng-container[mPortletHeadTitle] for the title -->
-        <ng-container mPortletHeadTitle>
-            <div class="m-portlet__head-title">
-                <h3 class="m-portlet__head-text">
-                </h3>
-            </div>
-        </ng-container>
-    
-        <!-- use ng-container[mPortletBody] for the body content -->
-        <ng-container mPortletBody *ngFor="let perspective of perspectives">
-            <!--begin::m-widget5-->
-            <div class="m-widget5" (click)="navigateToPerspectiveView(perspective.id)">
-                <div class="m-widget5__item">
-                    <div class="m-widget5__content">
-                        <div class="m-widget5__section">
-                            <h4 class="m-widget5__title">
-                                {{ perspective.id }}
-                            </h4>
-                            <span class="m-widget5__desc">
-                                {{ perspective.perspective }}
-                            </span>
-                            <div class="m-widget5__info">
-                                <span class="m-widget5__info-label">
-                                    <strong>Author:</strong>
+    <ng-container *ngIf="perspectives.length > 0; else showFilterTermNotFound">
+        <m-portlet>
+            <!-- use ng-container[mPortletHeadTitle] for the title -->
+            <ng-container mPortletHeadTitle>
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                    </h3>
+                </div>
+            </ng-container>
+            
+            <!-- use ng-container[mPortletBody] for the body content -->
+            <ng-container mPortletBody *ngFor="let perspective of perspectives">
+                    
+                <!--begin::m-widget5-->
+                <div class="m-widget5" (click)="navigateToPerspectiveView(perspective.id)">
+                    <div class="m-widget5__item">
+                        <div class="m-widget5__content">
+                            <div class="m-widget5__section">
+                                <h4 class="m-widget5__title">
+                                    {{ perspective.id }}
+                                </h4>
+                                <span class="m-widget5__desc">
+                                    {{ perspective.perspective }}
                                 </span>
-                                <span class="m-widget5__info-author-name">
-                                    {{ perspective.author ? perspective.author.name : 'None' }}
-                                </span>
+                                <div class="m-widget5__info">
+                                    <span class="m-widget5__info-label">
+                                        <strong>Author:</strong>
+                                    </span>
+                                    <span class="m-widget5__info-author-name">
+                                        {{ perspective.author ? perspective.author.name : 'None' }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="m-widget5__content">
+                            <div class="m-widget5__stats1">
+                                <span class="m-widget5__number">{{ perspective.category ? perspective.category.name : 'None'}}</span>
+                                <br>
+                                <span class="m-widget5__sales">Category</span>
                             </div>
                         </div>
                     </div>
-    
-                    <div class="m-widget5__content">
-                        <div class="m-widget5__stats1">
-                            <span class="m-widget5__number">{{ perspective.category ? perspective.category.name : 'None'}}</span>
-                            <br>
-                            <span class="m-widget5__sales">Category</span>
-                        </div>
-                    </div>
                 </div>
-            </div>
-            <!--end::m-widget5-->
-        </ng-container>
-    </m-portlet>
+                <!--end::m-widget5-->
+            </ng-container>
+        </m-portlet>
+    </ng-container>
     <!--end:: Widgets/Best Sellers-->
+</ng-template>
+
+
+<ng-template #showFilterTermNotFound>
+        <m-portlet>
+                <!-- use ng-container[mPortletHeadTitle] for the title -->
+                <ng-container mPortletHeadTitle>
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                        </h3>
+                    </div>
+                </ng-container>
+                
+                <!-- use ng-container[mPortletBody] for the body content -->
+                <ng-container mPortletBody>
+                    <div class="alert alert-primary" role="alert" >
+                        Sorry {{userLogged}}, we couldn't find any Perspective with your search term.
+                    </div>
+                </ng-container>
+        </m-portlet>
 </ng-template>
