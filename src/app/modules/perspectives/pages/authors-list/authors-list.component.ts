@@ -50,7 +50,6 @@ export class AuthorsListComponent implements OnInit, OnDestroy {
         this.authorsSubscription = this.authorsService.getAuthors(searchTerm).subscribe(
             (response: HttpResponse<AuthorModel[]>) => {
                 this.authors = response.body;
-                const resultFound = this.authors.length > 0;
             }
         );
     }

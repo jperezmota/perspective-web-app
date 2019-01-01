@@ -64,7 +64,6 @@ export class PerspectivesListComponent implements OnInit, OnDestroy {
         this.perspectivesSubscription = this.perspectiveService.getPerspectives(searchTerm).subscribe(
             (response: HttpResponse<PerspectiveModel[]>) => {
                 this.perspectives = response.body;
-                const resultFound = this.perspectives.length > 0;
             }
         );
     }

@@ -32,4 +32,34 @@ export class CategoriesListComponent implements OnInit, OnDestroy {
         this.categoriesSubscription.unsubscribe();
     }
 
+    public onFilterSearchProcessed(searchTerm: string) {
+        if (searchTerm) {
+            this.showFilterResult(searchTerm);
+        } else {
+            this.removeFilterResult();
+        }
+    }
+
+    public onUserLeftInputField(searchTerm: string) {
+        if (!searchTerm) {
+            this.removeFilterResult();
+        }
+    }
+
+    private showFilterResult(searchTerm: string): void {
+        this.categoriesSubscription = this.categoriesService.getCategories(searchTerm).subscribe(
+            (response: HttpResponse<CategoryModel[]>) => {
+                this.categories = response.body;
+            }
+        );
+    }
+
+    private removeFilterResult(): void {
+        this.categoriesSubscription = this.categoriesService.getCategories().subscribe(
+            (response: HttpResponse<CategoryModel[]>) => {
+                this.categories = response.body;
+            }
+        );
+    }
+
 }
