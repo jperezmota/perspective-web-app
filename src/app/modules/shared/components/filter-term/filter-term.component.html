@@ -1,0 +1,8 @@
+<div class="row no-gutters">
+    <div class="col">
+        <input type="text" [(ngModel)]="searchTerm" class="form-control" (blur)="onInputBlur()" [placeholder]="placeHolder">
+    </div>
+    <div class="col">
+        <button class="btn btn-primary" (click)="onSearchClicked()">Search</button>
+    </div>
+</div>
