@@ -23,8 +23,15 @@
 
             <div class="form-group">
                 <mat-form-field class="full-width-input">
+                    <mat-label>Title</mat-label>
+                    <input matInput name="title" pattern=".*\S+.*" placeholder="Leave your Title" maxlength="40" [(ngModel)]="perspective.title" required>
+                </mat-form-field>
+            </div>
+            
+            <div class="form-group">
+                <mat-form-field class="full-width-input">
                     <mat-label>Perspective</mat-label>
-                    <textarea matInput name="perspective" pattern=".*\S+.*" placeholder="Leave your Perspective" maxlength="2500" [(ngModel)]="perspective.perspective"
+                    <textarea matInput name="perspective" pattern=".*\S+.*" placeholder="Leave your Perspective" maxlength="1000" [(ngModel)]="perspective.perspective"
                         rows="5" required></textarea>
                 </mat-form-field>
             </div>

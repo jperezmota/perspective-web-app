@@ -29,7 +29,12 @@
             <!-- use ng-container[mPortletBody] for the body content -->
             <ng-container mPortletBody>
                 <form class="m-login__form m-form" name="form" (ngSubmit)="processingForm()" #f="ngForm" novalidate>
-
+                    <div class="form-group">
+                        <mat-form-field class="full-width-input">
+                            <mat-label>Title</mat-label>
+                            <input matInput name="title" pattern=".*\S+.*" placeholder="Leave your Title" maxlength="40" [readonly]="readOnlyForm" [(ngModel)]="modifiedPerspective.title" required>
+                        </mat-form-field>
+                    </div>
                     <div class="form-group">
                         <mat-form-field class="full-width-input">
                             <mat-label>Perspective</mat-label>

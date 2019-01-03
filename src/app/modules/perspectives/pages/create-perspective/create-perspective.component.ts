@@ -56,7 +56,7 @@ export class CreatePerspectiveComponent implements OnInit, OnDestroy {
         this.perspectiveService.createPerspective(this.perspective).subscribe(
             (response: HttpResponse<PerspectiveModel>) => {
                 this.toastr.success('Your Perspective has been created.',
-                                    'Congratulation, ' + this.authenticationService.getUsername() + '.');
+                                    'Congratulations, ' + this.authenticationService.getUsername() + '.');
                 this.router.navigate(['perspectives', response.body.id]);
             },
             error => {

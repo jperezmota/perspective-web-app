@@ -129,6 +129,7 @@ export class PerspectiveProfileComponent implements OnInit, OnDestroy {
 
     private fillForm(): void {
         this.modifiedPerspective.id = this.perspective.id;
+        this.modifiedPerspective.title = this.perspective.title;
         this.modifiedPerspective.perspective = this.perspective.perspective;
         this.modifiedPerspective.thoughts = this.perspective.thoughts;
         if (this.perspective.author) {
