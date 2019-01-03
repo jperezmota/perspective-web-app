@@ -11,6 +11,50 @@ export class CategoriesService {
 
     constructor(private http: HttpClient, private authenticationService: AuthenticationService) {}
 
+    public modifyCategory(category: CategoryModel): Observable< HttpResponse<CategoryModel> > {
+		const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_CATEGORIES + '/' + category.id;
+		const userToken = this.authenticationService.getUserToken();
+
+		return this.http.patch<CategoryModel>( perspectiveApiUrl,
+            category,
+												  {
+													  observe: 'response',
+													  headers: new HttpHeaders().set('Authorization', userToken )
+												  }
+												)
+												.pipe(
+													catchError(this.handleError)
+												);
+    }
+
+    public deleteCategory(categoryId: number): Observable< HttpResponse<any> > {
+		const categoryURL = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_CATEGORIES + '/' + categoryId;
+		const userToken = this.authenticationService.getUserToken();
+
+		return this.http.delete<any>( categoryURL,
+									  {
+										  observe: 'response',
+									      headers: new HttpHeaders().set('Authorization', userToken )
+									  }
+									)
+									.pipe(
+										catchError(this.handleError)
+									);
+    }
+
+    public createCategory(categoryModel: CategoryModel): Observable<HttpResponse<CategoryModel> > {
+        const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_CATEGORIES;
+        const userToken = this.authenticationService.getUserToken();
+        return this.http.post<CategoryModel>(perspectiveApiUrl,
+                                             categoryModel,
+                                            {
+                                                observe: 'response',
+                                                headers: new HttpHeaders().set('Authorization', userToken)
+                                            }).pipe(
+                                                catchError(this.handleError)
+                                            );
+    }
+
     public getCategories(searchTerm: string = ''): Observable< HttpResponse<CategoryModel[]> > {
         const categoriesUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_CATEGORIES;
         const userToken = this.authenticationService.getUserToken();
