@@ -99,7 +99,7 @@ export class PerspectiveService {
 		if (clientSideOrNetworkError) {
 		  console.error('An error occurred:', errorResponse.error.message);
 		} else {
-			if (errorResponse.status === 404) {
+			if (errorResponse.status === 404 || errorResponse.status === 422) {
 				return throwError(errorResponse.error.message);
 			} else {
 				console.error( `Backend returned code ${errorResponse.status}, ` + `body was: ${JSON.stringify(errorResponse.error)}`);
