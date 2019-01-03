@@ -4,6 +4,8 @@ import { AuthorModel } from '../../models/author.model';
 import { Subscription } from '../../../../../../node_modules/rxjs';
 import { HttpResponse } from '../../../../../../node_modules/@angular/common/http';
 import { ToastrService } from '../../../../../../node_modules/ngx-toastr';
+import { NgbModal } from '../../../../../../node_modules/@ng-bootstrap/ng-bootstrap';
+import { AuthorCreationModalComponent } from '../../components/author-creation-modal/author-creation-modal.component';
 
 @Component({
     selector: 'm-pers-authors-list',
@@ -14,7 +16,9 @@ export class AuthorsListComponent implements OnInit, OnDestroy {
     authors: AuthorModel[] = [];
     private authorsSubscription: Subscription;
 
-    constructor(private authorsService: AuthorsService, private toastr: ToastrService) {}
+    constructor(private authorsService: AuthorsService,
+                private toastr: ToastrService,
+                private modalService: NgbModal) {}
 
     ngOnInit() {
         this.authorsSubscription = this.authorsService.getAuthors().subscribe(
@@ -60,5 +64,20 @@ export class AuthorsListComponent implements OnInit, OnDestroy {
                 this.authors = response.body;
             }
         );
+    }
+
+    public openAuthorCreationWindow(): void {
+        const modalRef = this.modalService.open(AuthorCreationModalComponent);
+        modalRef.result.then(
+            (result) => {
+                if (result) {
+                    this.authors.push(result);
+                }
+            },
+            (reason) => {
+
+            }
+        );
+
     }
 }

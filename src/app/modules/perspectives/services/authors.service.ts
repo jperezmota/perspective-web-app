@@ -29,6 +29,19 @@ export class AuthorsService {
                         );
     }
 
+    public createAuthor(authorModel: AuthorModel): Observable<HttpResponse<AuthorModel> > {
+        const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_AUTHORS;
+        const userToken = this.authenticationService.getUserToken();
+        return this.http.post<AuthorModel>(perspectiveApiUrl,
+                              authorModel,
+                              {
+                                observe: 'response',
+                                headers: new HttpHeaders().set('Authorization', userToken)
+                              }).pipe(
+                                  catchError(this.handleError)
+                              );
+    }
+
     private handleError(errorResponse: HttpErrorResponse) {
         const clientSideOrNetworkError = errorResponse.error instanceof ErrorEvent;
 
