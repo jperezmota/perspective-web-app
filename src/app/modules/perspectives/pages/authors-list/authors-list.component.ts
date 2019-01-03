@@ -6,9 +6,13 @@ import { HttpResponse } from '../../../../../../node_modules/@angular/common/htt
 import { ToastrService } from '../../../../../../node_modules/ngx-toastr';
 import { NgbModal } from '../../../../../../node_modules/@ng-bootstrap/ng-bootstrap';
 import { AuthorCreationModalComponent } from '../../components/author-creation-modal/author-creation-modal.component';
+import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
+import { AuthenticationService } from '../../../auth/services/authentication.service';
+import { AuthorEditionModalComponent } from '../../components/author-edition-modal/author-edition-modal.component';
 
 @Component({
     selector: 'm-pers-authors-list',
+    styleUrls: ['./authors-list.component.scss'],
     templateUrl: './authors-list.component.html'
 })
 export class AuthorsListComponent implements OnInit, OnDestroy {
@@ -17,6 +21,7 @@ export class AuthorsListComponent implements OnInit, OnDestroy {
     private authorsSubscription: Subscription;
 
     constructor(private authorsService: AuthorsService,
+                private authenticationService: AuthenticationService,
                 private toastr: ToastrService,
                 private modalService: NgbModal) {}
 
@@ -34,6 +39,49 @@ export class AuthorsListComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.authorsSubscription.unsubscribe();
+    }
+
+    public openConfirmationModal(author: AuthorModel) {
+        const modalRef = this.modalService.open(ConfirmationModalComponent);
+        modalRef.componentInstance.message = 'The deletion of your Author: <b>' + author.name + '</b>, will be permanent.';
+        modalRef.componentInstance.confirmationButtonMessage = 'Delete Author';
+        modalRef.result.then(
+            (result) => {
+                if (result) {
+                    this.deleteAuthor(author);
+                }
+            },
+            (reason) => {
+
+            }
+        );
+    }
+
+    public editAuthor(author: AuthorModel): void {
+        const modalRef = this.modalService.open(AuthorEditionModalComponent);
+        modalRef.componentInstance.author = Object.assign({}, author);
+        modalRef.result.then(
+            (result) => {
+                if (result) {
+                    this.authors.splice(this.authors.indexOf(author), 1, result);
+                }
+            },
+            (reason) => {
+
+            }
+        );
+    }
+
+    private deleteAuthor(author: AuthorModel): void {
+        this.authorsService.deleteAuthor(author.id).subscribe(
+            (response: HttpResponse<any>) => {
+                this.toastr.success('Your author has been deleted.', 'Congratulation, ' + this.authenticationService.getUsername() + '.');
+                this.authors.splice(this.authors.indexOf(author), 1);
+            },
+            (error) => {
+                this.toastr.error(error, 'Inconvenient');
+            }
+        );
     }
 
     public onFilterSearchProcessed(searchTerm: string) {

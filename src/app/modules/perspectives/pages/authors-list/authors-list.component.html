@@ -22,12 +22,17 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Author</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let author of authors">
             <td>{{ author.id }}</td>
             <td>{{ author.name }}</td>
+            <td>
+                <mat-icon class="clickable-icons" (click)="editAuthor(author)">edit</mat-icon>
+                <mat-icon class="clickable-icons" (click)="openConfirmationModal(author)">delete</mat-icon>
+            </td>
         </tr>
     </tbody>
 </table>

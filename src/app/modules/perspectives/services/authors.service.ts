@@ -11,8 +11,23 @@ export class AuthorsService {
 
     constructor(private http: HttpClient, private authenticationService: AuthenticationService) {}
 
+    public deleteAuthor(authorId: number): Observable< HttpResponse<any> > {
+		const authorsURL = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_AUTHORS + '/' + authorId;
+		const userToken = this.authenticationService.getUserToken();
+
+		return this.http.delete<any>( authorsURL,
+									  {
+										  observe: 'response',
+									      headers: new HttpHeaders().set('Authorization', userToken )
+									  }
+									)
+									.pipe(
+										catchError(this.handleError)
+									);
+    }
+
     public getAuthors(searchTerm: string = ''): Observable< HttpResponse<AuthorModel[]> > {
-        const categoriesUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_AUTHORS ;
+        const authorsURL = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_AUTHORS ;
         const userToken = this.authenticationService.getUserToken();
         let httpParams = new HttpParams();
 
@@ -20,7 +35,7 @@ export class AuthorsService {
 			httpParams = httpParams.set('searchTerm', searchTerm);
         }
 
-        return this.http.get<AuthorModel[]>( categoriesUrl,
+        return this.http.get<AuthorModel[]>( authorsURL,
                               {observe: 'response',
                               headers: new HttpHeaders().set('Authorization', userToken),
                               params: httpParams}
@@ -41,6 +56,23 @@ export class AuthorsService {
                                   catchError(this.handleError)
                               );
     }
+
+    public modifyAuthor(author: AuthorModel): Observable< HttpResponse<AuthorModel> > {
+		const perspectiveApiUrl = ApiInfo.API_URL + ApiInfo.API_ENDPOINT_AUTHORS + '/' + author.id;
+		const userToken = this.authenticationService.getUserToken();
+
+		return this.http.patch<AuthorModel>( perspectiveApiUrl,
+												  author,
+												  {
+													  observe: 'response',
+													  headers: new HttpHeaders().set('Authorization', userToken )
+												  }
+												)
+												.pipe(
+													catchError(this.handleError)
+												);
+	}
+
 
     private handleError(errorResponse: HttpErrorResponse) {
         const clientSideOrNetworkError = errorResponse.error instanceof ErrorEvent;

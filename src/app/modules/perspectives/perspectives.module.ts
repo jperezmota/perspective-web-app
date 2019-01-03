@@ -14,6 +14,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CategoriesListComponent } from './pages/categories-list/categories-list.component';
 import {AuthorsListComponent } from './pages/authors-list/authors-list.component';
 import { AuthorCreationModalComponent } from './components/author-creation-modal/author-creation-modal.component';
+import { AuthorEditionModalComponent } from './components/author-edition-modal/author-edition-modal.component';
 
 @NgModule({
     imports: [
@@ -34,10 +35,12 @@ import { AuthorCreationModalComponent } from './components/author-creation-modal
         PerspectiveProfileComponent,
         CategoriesListComponent,
         AuthorsListComponent,
-        AuthorCreationModalComponent
+        AuthorCreationModalComponent,
+        AuthorEditionModalComponent
     ],
     entryComponents: [
-        AuthorCreationModalComponent
+        AuthorCreationModalComponent,
+        AuthorEditionModalComponent
     ],
     providers: [
         PerspectiveService, AuthorsService, CategoriesService
