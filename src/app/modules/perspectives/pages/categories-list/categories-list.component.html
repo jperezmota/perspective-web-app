@@ -8,6 +8,10 @@
 <br>
 <br>
 
+<button mat-fab color="primary" (click)="openCategoryCreationWindow()">Create</button>
+<br>
+<br>
+
 <!-- begin:: Filter -->
 <m-pers-filter-term placeHolder="Search by Id or Name" (searchProcessed)="onFilterSearchProcessed($event)" (userLeftInputField)="onUserLeftInputField($event)"></m-pers-filter-term>
 <br>
@@ -18,12 +22,17 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Category</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let category of categories">
             <td>{{ category.id }}</td>
             <td>{{ category.name }}</td>
+            <td>
+                <mat-icon class="clickable-icons" (click)="editCategory(category)">edit</mat-icon>
+                <mat-icon class="clickable-icons" (click)="openConfirmationModal(category)">delete</mat-icon>
+            </td>
         </tr>
     </tbody>
 </table>

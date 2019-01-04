@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Author Edition</h4>
+    <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<form name="form" (ngSubmit)="processingForm()" #f="ngForm" novalidate>
+    <div class="modal-body">   
+        <mat-form-field class="example-full-width">
+            <input name="name" pattern=".*\S+.*"  matInput placeholder="Author's name" [(ngModel)]="author.name" required>
+        </mat-form-field>
+    </div>
+
+    <div class="modal-footer">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!f.valid">Modify</button>
+    </div>
+</form>
